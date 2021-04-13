@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Favlist {
     private int idUser;
-    private List<Building>[] buildings;
+    private List<Building> buildings;
 
     public Favlist() {
     }
 
-    public Favlist(int idUser, List<Building>[] buildings) {
+    public Favlist(int idUser, List<Building> buildings) {
         this.idUser = idUser;
         this.buildings = buildings;
     }
@@ -22,11 +22,11 @@ public class Favlist {
         this.idUser = idUser;
     }
 
-    public List<Building>[] getBuildings() {
+    public List<Building> getBuildings() {
         return buildings;
     }
 
-    public void setBuildings(List<Building>[] buildings) {
+    public void setBuildings(List<Building> buildings) {
         this.buildings = buildings;
     }
 }
