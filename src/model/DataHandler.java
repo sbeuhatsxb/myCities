@@ -64,7 +64,7 @@ public class DataHandler {
 
         String createTable_role = "CREATE TABLE role(\n" +
                 "\tid_role    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,\n" +
-                "\tlabel      TEXT NOT NULL\n" +
+                "\tlabel      TEXT\n" +
                 ");";
 
         String createTable_user = "CREATE TABLE user(\n" +
@@ -114,10 +114,11 @@ public class DataHandler {
 
         String createTable_building = "CREATE TABLE building(\n" +
                 "\tid_building     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,\n" +
-                "\tdescription     TEXT NOT NULL ,\n" +
-                "\tyear            INTEGER NOT NULL ,\n" +
-                "\twindows         INTEGER NOT NULL ,\n" +
-                "\tid_city         INTEGER NOT NULL ,\n" +
+                "\tdescription     TEXT,\n" +
+                "\timage     TEXT,\n" +
+                "\tyear            INTEGER ,\n" +
+                "\twindows         INTEGER ,\n" +
+                "\tid_city         INTEGER ,\n" +
                 "\tid_architect    INTEGER ,\n" +
                 "\tid_time         INTEGER ,\n" +
                 "\tid_type         INTEGER ,\n" +
