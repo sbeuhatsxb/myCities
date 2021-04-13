@@ -1,37 +1,31 @@
 package entities;
 
 public class RoofType {
-	
-	private int id;
-	private String label;
-	
-	//----------Constructeur---------
-	public RoofType(int idRoofT, String label) {
-		this.id=idRoofT;
-		this.label=label;
-		
-		
-		
-	}
-	//-------------------------------
-	
 
-	//-----------Getters&Setters-----	
-	public int getIdRoofT() {
-		return id;
-	}
+    private int id;
+    private String label;
 
-	public void setIdRoofT(int idRoofT) {
-		this.id = idRoofT;
-	}
+    public RoofType() {
+    }
 
-	public String getLabel() {
-		return label;
-	}
+    public RoofType(int idRoofT, String label) {
+        this.id = idRoofT;
+        this.label = label;
+    }
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
-	
-	//-------------------------------
+    public int getIdRoofT() {
+        return id;
+    }
+
+    public void setIdRoofT(int idRoofT) {
+        this.id = idRoofT;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 }

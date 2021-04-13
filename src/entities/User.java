@@ -1,51 +1,49 @@
 package entities;
 
 public class User {
-	private  int id,idRole;
-	private String login,password;
-	
-	//----------Constructeur---------
-	public User (int idUser, int idRole, String login, String password) {
-		this.id=idUser;
-		this.idRole=idRole;
-		this.login=login;
-		this.password=password;
-	}
-	//-------------------------------
-	
-	//-----------Getters&Setters-----
-	public int getId() {
-		return id;
-	}
+    private int id, idRole;
+    private String login, password;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public User() {
+    }
 
-	public int getIdRole() {
-		return idRole;
-	}
+    public User(int idUser, int idRole, String login, String password) {
+        this.id = idUser;
+        this.idRole = idRole;
+        this.login = login;
+        this.password = password;
+    }
 
-	public void setIdRole(int idRole) {
-		this.idRole = idRole;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public int getIdRole() {
+        return idRole;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setIdRole(int idRole) {
+        this.idRole = idRole;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	//-------------------------------
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }
