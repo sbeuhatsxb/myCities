@@ -33,3 +33,4 @@ visitMyCities.db
 .settings/
 .classpath
 .project
+/bin/
