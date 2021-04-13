@@ -3,30 +3,25 @@ package entities;
 public class Building {
 
     private int id, windows, year;
-    private int idArch, idCity, idFrame, idMat, idRoofT, idStyle;
-    private String image;
+    private Architect architect;
+    private City city;
+    private Frame frame;
+    private Material material;
+    private Type type;
+    private RoofType roofType;
+    private Style style;
+    private String description, image;
 
     public Building() {
     }
 
-    public Building(int idArch, int idBuilding, int idCity, int idFrame, int idMat, int idRoofT, int idStyle, int windows, int year, String image) {
-        this.idArch = idArch;
-        this.id = idBuilding;
-        this.idCity = idCity;
-        this.idFrame = idFrame;
-        this.idMat = idMat;
-        this.idRoofT = idRoofT;
-        this.idStyle = idStyle;
-        this.windows = windows;
-        this.year = year;
-        this.image = image;
-    }
-    public int getIdBuilding() {
+
+    public int getId() {
         return id;
     }
 
-    public void setIdBuilding(int idBuilding) {
-        this.id = idBuilding;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getWindows() {
@@ -45,52 +40,60 @@ public class Building {
         this.year = year;
     }
 
-    public int getIdArch() {
-        return idArch;
+    public Architect getArchitect() {
+        return architect;
     }
 
-    public void setIdArch(int idArch) {
-        this.idArch = idArch;
+    public void setArchitect(Architect architect) {
+        this.architect = architect;
     }
 
-    public int getIdCity() {
-        return idCity;
+    public City getCity() {
+        return city;
     }
 
-    public void setIdCity(int idCity) {
-        this.idCity = idCity;
+    public void setCity(City city) {
+        this.city = city;
     }
 
-    public int getIdFrame() {
-        return idFrame;
+    public Frame getFrame() {
+        return frame;
     }
 
-    public void setIdFrame(int idFrame) {
-        this.idFrame = idFrame;
+    public void setFrame(Frame frame) {
+        this.frame = frame;
     }
 
-    public int getIdMat() {
-        return idMat;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setIdMat(int idMat) {
-        this.idMat = idMat;
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
-    public int getIdRoofT() {
-        return idRoofT;
+    public RoofType getRoofType() {
+        return roofType;
     }
 
-    public void setIdRoofT(int idRoofT) {
-        this.idRoofT = idRoofT;
+    public void setRoofType(RoofType roofType) {
+        this.roofType = roofType;
     }
 
-    public int getIdStyle() {
-        return idStyle;
+    public Style getStyle() {
+        return style;
     }
 
-    public void setIdStyle(int idStyle) {
-        this.idStyle = idStyle;
+    public void setStyle(Style style) {
+        this.style = style;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImage() {
@@ -101,5 +104,11 @@ public class Building {
         this.image = image;
     }
 
+    public Type getType() {
+        return type;
+    }
 
+    public void setType(Type type) {
+        this.type = type;
+    }
 }

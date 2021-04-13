@@ -12,12 +12,12 @@ public class Frame {
         this.label = label;
     }
 
-    public int getIdFrame() {
+    public int getId() {
         return id;
     }
 
-    public void setIdFrame(int idFrame) {
-        this.id = idFrame;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {

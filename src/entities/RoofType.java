@@ -13,12 +13,12 @@ public class RoofType {
         this.label = label;
     }
 
-    public int getIdRoofT() {
+    public int getId() {
         return id;
     }
 
-    public void setIdRoofT(int idRoofT) {
-        this.id = idRoofT;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {
