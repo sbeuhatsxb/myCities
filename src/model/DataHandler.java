@@ -14,7 +14,6 @@ public class DataHandler implements Env {
     private static final String filename = "visitMyCities.db";
     private static final String url = location + filename;
 
-
     public static void generatedDatabase() {
 
         try (Connection conn = DriverManager.getConnection(url)) {
@@ -77,7 +76,7 @@ public class DataHandler implements Env {
         return null;
     }
 
-    public static List<Object> get(int id, String table) {
+    public static List<Object> getOne(int id, String table) {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
             String query = "SELECT * FROM "+table+" WHERE id_"+table+" ="+id+";";
@@ -92,9 +91,41 @@ public class DataHandler implements Env {
         return null;
     }
 
+    public static List<Object> getFilteredById(String table, int filter) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM "+table+" WHERE id_"+table+" = "+filter+";";
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            return objectTransformer(rs, table);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public static List<Object> getFilteredById(String table, int filter, String column) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM "+table+" WHERE "+column+" = "+filter+";";
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            return objectTransformer(rs, table);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     private static List<Object> objectTransformer(ResultSet rs, String table) throws SQLException {
         List<Object> objectList;
         objectList = new ArrayList();
+        Integer userId = null;
+        ArrayList<Integer> buildingsId = new ArrayList<>();
         while (rs.next()) {
             switch (table) {
                 case ARCHITECT -> {
@@ -122,13 +153,10 @@ public class DataHandler implements Env {
                 case COUNTRY ->  {
                     objectList.add(makeCountry(rs.getInt("id_" + table), rs.getString("label")));
                 }
-//                case FAVLIST ->  {
-//                    objectList.add(makeFavlist(
-//                            rs.getInt("id_" + table),
-//                            rs.getInt("id_user"),
-//                            rs.getInt("id_building")
-//                    ));
-//                }
+                case FAVLIST ->  {
+                            userId = rs.getInt("id_user");
+                            buildingsId.add(rs.getInt("id_building"));
+                }
                 case FRAME ->  {
                     objectList.add(makeFrame(rs.getInt("id_" + table), rs.getString("label")));
                 }
@@ -147,11 +175,23 @@ public class DataHandler implements Env {
                 case TYPE ->  {
                     objectList.add(makeType(rs.getInt("id_" + table), rs.getString("label")));
                 }
-                //case USER ->  this.makeUser(rs.getInt("id_" + table), rs.getString("label"));
+                case USER ->  {
+                    objectList.add(makeUser(
+                            rs.getInt("id_" + table),
+                            rs.getString("login"),
+                            rs.getString("password"),
+                            rs.getInt("id_role")
+                    ));
+                }
 
             }
         }
-        return objectList;
+        if(!table.equals(FAVLIST)){
+            return objectList;
+        } else {
+            objectList.add(makeFavlist(userId, buildingsId));
+            return objectList;
+        }
     }
 
     private static Architect makeArchitect(int id, String label){
@@ -183,32 +223,32 @@ public class DataHandler implements Env {
         object.setYear(year);
         object.setImage(image);
         object.setDescription(description);
-        if(get(id_architect, ARCHITECT).size() != 0 && !get(id_architect, ARCHITECT).equals(null)){
-            Architect architect = (Architect) get(id_architect, ARCHITECT).get(0);
+        if(getOne(id_architect, ARCHITECT).size() != 0 && !getOne(id_architect, ARCHITECT).equals(null)){
+            Architect architect = (Architect) getOne(id_architect, ARCHITECT).get(0);
             object.setArchitect(architect);
         }
-        if(get(id_city, CITY).size() != 0 && !get(id_city, CITY).equals(null)){
-            City city = (City) get(id_city, CITY).get(0);
+        if(getOne(id_city, CITY).size() != 0 && !getOne(id_city, CITY).equals(null)){
+            City city = (City) getOne(id_city, CITY).get(0);
             object.setCity(city);
         }
-        if(get(id_type, TYPE).size() != 0 && !get(id_type, TYPE).equals(null)){
-            Type type = (Type) get(id_type, TYPE).get(0);
+        if(getOne(id_type, TYPE).size() != 0 && !getOne(id_type, TYPE).equals(null)){
+            Type type = (Type) getOne(id_type, TYPE).get(0);
             object.setType(type);
         }
-        if(get(id_frame, FRAME).size() != 0 && !get(id_frame, FRAME).equals(null)){
-            Frame frame = (Frame) get(id_frame, FRAME).get(0);
+        if(getOne(id_frame, FRAME).size() != 0 && !getOne(id_frame, FRAME).equals(null)){
+            Frame frame = (Frame) getOne(id_frame, FRAME).get(0);
             object.setFrame(frame);
         }
-        if(get(id_material, MATERIAL).size() != 0 && !get(id_material, MATERIAL).equals(null)){
-            Material material = (Material) get(id_material, MATERIAL).get(0);
+        if(getOne(id_material, MATERIAL).size() != 0 && !getOne(id_material, MATERIAL).equals(null)){
+            Material material = (Material) getOne(id_material, MATERIAL).get(0);
             object.setMaterial(material);
         }
-        if(get(id_roof_type, ROOF_TYPE).size() != 0 && !get(id_roof_type, ROOF_TYPE).equals(null)){
-            RoofType roofType = (RoofType) get(id_roof_type, ROOF_TYPE).get(0);
+        if(getOne(id_roof_type, ROOF_TYPE).size() != 0 && !getOne(id_roof_type, ROOF_TYPE).equals(null)){
+            RoofType roofType = (RoofType) getOne(id_roof_type, ROOF_TYPE).get(0);
             object.setRoofType(roofType);
         }
-        if(get(id_style, STYLE).size() != 0 && !get(id_style, STYLE).equals(null)){
-            Style style = (Style) get(id_style, STYLE).get(0);
+        if(getOne(id_style, STYLE).size() != 0 && !getOne(id_style, STYLE).equals(null)){
+            Style style = (Style) getOne(id_style, STYLE).get(0);
             object.setStyle(style);
         }
 
@@ -229,21 +269,22 @@ public class DataHandler implements Env {
         return object;
     }
 
-//    private static Favlist makeFavlist(int user, int buildingId){
-//        try (Connection conn = DriverManager.getConnection(url);
-//             Statement stmt = conn.createStatement()) {
-//            String query = "SELECT * FROM favlist WHERE id_user ="+rs.getInt("id_" + table)+";";
-//
-//            ResultSet favlist = stmt.executeQuery(query);
-//
-//            return objectTransformer(rs, table);
-//
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//        Favlist object = new Favlist();
-//        return object;
-//    }
+    private static Favlist makeFavlist(int user, List<Integer> buildingsId){
+        List<Building> buildings = new ArrayList<>();
+        for(int id : buildingsId){
+            if(getFilteredById(Env.BUILDING, id).size() != 0 && !getFilteredById(Env.BUILDING, id).equals(null)){
+                Building building = (Building) getFilteredById(Env.BUILDING, id).get(0);
+                buildings.add(building);
+            }
+        }
+
+
+        Favlist favlist = new Favlist();
+
+        favlist.setIdUser(user);
+        favlist.setBuildings(buildings);
+        return favlist;
+    }
 
     private static Frame makeFrame(int id, String label){
         Frame object = new Frame();
@@ -287,9 +328,16 @@ public class DataHandler implements Env {
         return object;
     }
 
-    private User makeUser(int id, String label){
+    private static User makeUser(int id, String login, String password, int id_role){
         User object = new User();
         object.setId(id);
+        object.setLogin(login);
+        object.setLogin(password);
+        if(getFilteredById(Env.ROLE, id_role).size() != 0 && !getFilteredById(Env.ROLE, id_role).equals(null)){
+            Role role = (Role) getFilteredById(Env.ROLE, id_role).get(0);
+            object.setRole(role);
+        }
+
         return object;
     }
 
