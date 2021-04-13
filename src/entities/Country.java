@@ -13,12 +13,12 @@ public class Country {
         this.label = label;
     }
 
-    public int getIdCountry() {
+    public int getId() {
         return id;
     }
 
-    public void setIdCountry(int idCountry) {
-        this.id = idCountry;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {

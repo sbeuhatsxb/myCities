@@ -1,15 +1,16 @@
 package entities;
 
 public class User {
-    private int id, idRole;
+    private int id;
+    private Role role;
     private String login, password;
 
     public User() {
     }
 
-    public User(int idUser, int idRole, String login, String password) {
-        this.id = idUser;
-        this.idRole = idRole;
+    public User(int id, Role role, String login, String password) {
+        this.id = id;
+        this.role = role;
         this.login = login;
         this.password = password;
     }
@@ -22,12 +23,12 @@ public class User {
         this.id = id;
     }
 
-    public int getIdRole() {
-        return idRole;
+    public Role getRole() {
+        return role;
     }
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getLogin() {
