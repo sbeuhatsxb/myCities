@@ -6,11 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.DataHandler;
+import resources.Env;
 
-public class Main extends Application {
+public class Main extends Application implements Env {
 
     private DataHandler database;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -21,6 +21,8 @@ public class Main extends Application {
         database = new DataHandler();
         database.newDatabase();
 
+        database.getAll(ARCHITECT);
+        String a = "b";
     }
 
 

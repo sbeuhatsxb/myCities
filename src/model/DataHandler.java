@@ -2,8 +2,11 @@ package model;
 
 import java.io.File;
 import java.sql.*;
+import java.util.ArrayList;
 
-public class DataHandler {
+import resources.Env;
+
+public class DataHandler implements Env {
 
     private static final String location = "jdbc:sqlite:";
     private static final String filename = "visitMyCities.db";
@@ -253,5 +256,126 @@ public class DataHandler {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void getAll(String table) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM "+table+";";
+
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                System.out.println(
+                        rs.getInt("id_"+table) +  "\t" +
+                        rs.getString("label")
+                );
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void objectTransformer(ResultSet rs, String table) throws SQLException {
+        ArrayList<?> objectList = new ArrayList<>();
+        while (rs.next()) {
+            switch (table) {
+                case ARCHITECT -> objectList.add(this.makeArchitect(rs.getInt("id_" + table), rs.getString("label")));
+                case BUILDING -> this.makeBuilding(rs.getInt("id_" + table)));
+                case CITY ->  this.makeCity(rs.getInt("id_" + table), rs.getString("label"));
+                case COUNTRY ->  this.makeCountry(rs.getInt("id_" + table), rs.getString("label"));
+                //case FAVLIST ->  this.makeFavlist(rs.getInt("id_" + table), rs.getString("label"));
+                case FRAME ->  this.makeFrame(rs.getInt("id_" + table), rs.getString("label"));
+                case MATERIAL ->  this.makeMaterial(rs.getInt("id_" + table), rs.getString("label"));
+                case ROLE ->  this.makeRole(rs.getInt("id_" + table), rs.getString("label"));
+                case ROOF_TYPE ->  this.makeRoofType(rs.getInt("id_" + table), rs.getString("label"));
+                case STYLE ->  this.makeStyle(rs.getInt("id_" + table), rs.getString("label"));
+                case TYPE ->  this.makeType(rs.getInt("id_" + table), rs.getString("label"));bel(rs.getString("label"));
+                case USER ->  this.makeUser(rs.getInt("id_" + table), rs.getString("label"));
+            }
+        }
+    }
+
+    private Architect makeArchitect(int id, String label){
+        Architect object = new Architect();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Building makeBuilding(int id){
+        Building object = new Building();
+        object.setId(id);
+        return object;
+    }
+
+    private City makeCity(int id, String label){
+        City object = new City();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Country makeCountry(int id, String label){
+        Country object = new Country();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private FavList makeFavlist(int user, int[] buildingId){
+        FavList object = new FavList();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Frame makeFrame(int id, String label){
+        Frame object = new Frame();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Material makeMaterial(int id, String label){
+        Material object = new Material();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Role makeRole(int id, String label){
+        Role object = new Role();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private RoofType makeRoofType(int id, String label){
+        RoofType object = new RoofType();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Style makeStyle(int id, String label){
+        Style object = new Style();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private Type makeType(int id, String label){
+        Type object = new Type();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private User makeUser(int id, String label){
+        User object = new User();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
     }
 }
