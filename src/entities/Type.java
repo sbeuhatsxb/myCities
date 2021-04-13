@@ -12,12 +12,12 @@ public class Type {
         this.label = label;
     }
 
-    public int getIdType() {
+    public int getId() {
         return id;
     }
 
-    public void setIdType(int idType) {
-        this.id = idType;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {

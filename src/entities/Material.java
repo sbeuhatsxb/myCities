@@ -12,12 +12,12 @@ public class Material {
         this.label = label;
     }
 
-    public int getIdMaterial() {
+    public int getId() {
         return id;
     }
 
-    public void setIdMaterial(int idMaterial) {
-        this.id = idMaterial;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {

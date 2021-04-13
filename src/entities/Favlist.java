@@ -1,13 +1,15 @@
 package entities;
 
-public class Favor {
-    private int idUser;
-    private int[] buildings;
+import java.util.List;
 
-    public Favor() {
+public class Favlist {
+    private int idUser;
+    private List<Building>[] buildings;
+
+    public Favlist() {
     }
 
-    public Favor(int idUser, int[] buildings) {
+    public Favlist(int idUser, List<Building>[] buildings) {
         this.idUser = idUser;
         this.buildings = buildings;
     }
@@ -20,11 +22,11 @@ public class Favor {
         this.idUser = idUser;
     }
 
-    public int[] getBuildings() {
+    public List<Building>[] getBuildings() {
         return buildings;
     }
 
-    public void setBuildings(int[] buildings) {
+    public void setBuildings(List<Building>[] buildings) {
         this.buildings = buildings;
     }
 }

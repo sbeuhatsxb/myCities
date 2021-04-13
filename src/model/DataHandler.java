@@ -1,10 +1,12 @@
 package model;
 
+import entities.*;
+import resources.Env;
+
 import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
-
-import resources.Env;
+import java.util.List;
 
 public class DataHandler implements Env {
 
@@ -60,10 +62,238 @@ public class DataHandler implements Env {
         }
     }
 
-    public static void createTables() {
-        // SQLite connection string
+    public static List<Object> getAll(String table) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM "+table+";";
 
-        // SQL statement for creating a new table
+            ResultSet rs = stmt.executeQuery(query);
+
+            return objectTransformer(rs, table);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public static List<Object> get(int id, String table) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM "+table+" WHERE id_"+table+" ="+id+";";
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            return objectTransformer(rs, table);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    private static List<Object> objectTransformer(ResultSet rs, String table) throws SQLException {
+        List<Object> objectList;
+        objectList = new ArrayList();
+        while (rs.next()) {
+            switch (table) {
+                case ARCHITECT -> {
+                    objectList.add(makeArchitect(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case BUILDING -> {
+                    objectList.add(makeBuilding(
+                            rs.getInt("id_" + table),
+                            rs.getString("description"),
+                            rs.getInt("windows"),
+                            rs.getInt("year"),
+                            rs.getString("image"),
+                            rs.getInt("id_architect"),
+                            rs.getInt("id_city"),
+                            rs.getInt("id_type"),
+                            rs.getInt("id_style"),
+                            rs.getInt("id_material"),
+                            rs.getInt("id_roof_type"),
+                            rs.getInt("id_frame")
+                    ));
+                }
+                case CITY ->  {
+                    objectList.add(makeCity(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case COUNTRY ->  {
+                    objectList.add(makeCountry(rs.getInt("id_" + table), rs.getString("label")));
+                }
+//                case FAVLIST ->  {
+//                    objectList.add(makeFavlist(
+//                            rs.getInt("id_" + table),
+//                            rs.getInt("id_user"),
+//                            rs.getInt("id_building")
+//                    ));
+//                }
+                case FRAME ->  {
+                    objectList.add(makeFrame(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case MATERIAL ->  {
+                    objectList.add(makeMaterial(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case ROLE ->  {
+                    objectList.add(makeRole(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case ROOF_TYPE ->  {
+                    objectList.add(makeRoofType(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case STYLE ->  {
+                    objectList.add(makeStyle(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                case TYPE ->  {
+                    objectList.add(makeType(rs.getInt("id_" + table), rs.getString("label")));
+                }
+                //case USER ->  this.makeUser(rs.getInt("id_" + table), rs.getString("label"));
+
+            }
+        }
+        return objectList;
+    }
+
+    private static Architect makeArchitect(int id, String label){
+        Architect object = new Architect();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static Building makeBuilding(
+            int id,
+            String description,
+            int windows,
+            int year,
+            String image,
+            int id_architect,
+            int id_city,
+            int id_type,
+            int id_style,
+            int id_material,
+            int id_roof_type,
+            int id_frame
+    )
+    {
+        Building object = new Building();
+
+        object.setId(id);
+        object.setWindows(windows);
+        object.setYear(year);
+        object.setImage(image);
+        object.setDescription(description);
+        if(get(id_architect, ARCHITECT).size() != 0 && !get(id_architect, ARCHITECT).equals(null)){
+            Architect architect = (Architect) get(id_architect, ARCHITECT).get(0);
+            object.setArchitect(architect);
+        }
+        if(get(id_city, CITY).size() != 0 && !get(id_city, CITY).equals(null)){
+            City city = (City) get(id_city, CITY).get(0);
+            object.setCity(city);
+        }
+        if(get(id_type, TYPE).size() != 0 && !get(id_type, TYPE).equals(null)){
+            Type type = (Type) get(id_type, TYPE).get(0);
+            object.setType(type);
+        }
+        if(get(id_frame, FRAME).size() != 0 && !get(id_frame, FRAME).equals(null)){
+            Frame frame = (Frame) get(id_frame, FRAME).get(0);
+            object.setFrame(frame);
+        }
+        if(get(id_material, MATERIAL).size() != 0 && !get(id_material, MATERIAL).equals(null)){
+            Material material = (Material) get(id_material, MATERIAL).get(0);
+            object.setMaterial(material);
+        }
+        if(get(id_roof_type, ROOF_TYPE).size() != 0 && !get(id_roof_type, ROOF_TYPE).equals(null)){
+            RoofType roofType = (RoofType) get(id_roof_type, ROOF_TYPE).get(0);
+            object.setRoofType(roofType);
+        }
+        if(get(id_style, STYLE).size() != 0 && !get(id_style, STYLE).equals(null)){
+            Style style = (Style) get(id_style, STYLE).get(0);
+            object.setStyle(style);
+        }
+
+        return object;
+    }
+
+    private static City makeCity(int id, String label){
+        City object = new City();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static Country makeCountry(int id, String label){
+        Country object = new Country();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+//    private static Favlist makeFavlist(int user, int buildingId){
+//        try (Connection conn = DriverManager.getConnection(url);
+//             Statement stmt = conn.createStatement()) {
+//            String query = "SELECT * FROM favlist WHERE id_user ="+rs.getInt("id_" + table)+";";
+//
+//            ResultSet favlist = stmt.executeQuery(query);
+//
+//            return objectTransformer(rs, table);
+//
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        Favlist object = new Favlist();
+//        return object;
+//    }
+
+    private static Frame makeFrame(int id, String label){
+        Frame object = new Frame();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static Material makeMaterial(int id, String label){
+        Material object = new Material();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static Role makeRole(int id, String label){
+        Role object = new Role();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static RoofType makeRoofType(int id, String label){
+        RoofType object = new RoofType();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static Style makeStyle(int id, String label){
+        Style object = new Style();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private static Type makeType(int id, String label){
+        Type object = new Type();
+        object.setId(id);
+        object.setLabel(label);
+        return object;
+    }
+
+    private User makeUser(int id, String label){
+        User object = new User();
+        object.setId(id);
+        return object;
+    }
+
+    private static void createTables() {
 
         String createTable_role = "CREATE TABLE role(\n" +
                 "\tid_role    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,\n" +
@@ -123,7 +353,6 @@ public class DataHandler implements Env {
                 "\twindows         INTEGER ,\n" +
                 "\tid_city         INTEGER ,\n" +
                 "\tid_architect    INTEGER ,\n" +
-                "\tid_time         INTEGER ,\n" +
                 "\tid_type         INTEGER ,\n" +
                 "\tid_style        INTEGER ,\n" +
                 "\tid_material     INTEGER ,\n" +
@@ -132,7 +361,6 @@ public class DataHandler implements Env {
                 "\n" +
                 "\t,CONSTRAINT building_city_FK FOREIGN KEY (id_city) REFERENCES city(id_city)\n" +
                 "\t,CONSTRAINT building_architect_FK FOREIGN KEY (id_architect) REFERENCES architect(id_architect)\n" +
-                "\t,CONSTRAINT building_time_FK FOREIGN KEY (id_time) REFERENCES time(id_time)\n" +
                 "\t,CONSTRAINT building_type_FK FOREIGN KEY (id_type) REFERENCES type(id_type)\n" +
                 "\t,CONSTRAINT building_style_FK FOREIGN KEY (id_style) REFERENCES style(id_style)\n" +
                 "\t,CONSTRAINT building_material_FK FOREIGN KEY (id_material) REFERENCES material(id_material)\n" +
@@ -256,126 +484,5 @@ public class DataHandler implements Env {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    public static void getAll(String table) {
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement()) {
-            String query = "SELECT * FROM "+table+";";
-
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                System.out.println(
-                        rs.getInt("id_"+table) +  "\t" +
-                        rs.getString("label")
-                );
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void objectTransformer(ResultSet rs, String table) throws SQLException {
-        ArrayList<?> objectList = new ArrayList<>();
-        while (rs.next()) {
-            switch (table) {
-                case ARCHITECT -> objectList.add(this.makeArchitect(rs.getInt("id_" + table), rs.getString("label")));
-                case BUILDING -> this.makeBuilding(rs.getInt("id_" + table)));
-                case CITY ->  this.makeCity(rs.getInt("id_" + table), rs.getString("label"));
-                case COUNTRY ->  this.makeCountry(rs.getInt("id_" + table), rs.getString("label"));
-                //case FAVLIST ->  this.makeFavlist(rs.getInt("id_" + table), rs.getString("label"));
-                case FRAME ->  this.makeFrame(rs.getInt("id_" + table), rs.getString("label"));
-                case MATERIAL ->  this.makeMaterial(rs.getInt("id_" + table), rs.getString("label"));
-                case ROLE ->  this.makeRole(rs.getInt("id_" + table), rs.getString("label"));
-                case ROOF_TYPE ->  this.makeRoofType(rs.getInt("id_" + table), rs.getString("label"));
-                case STYLE ->  this.makeStyle(rs.getInt("id_" + table), rs.getString("label"));
-                case TYPE ->  this.makeType(rs.getInt("id_" + table), rs.getString("label"));bel(rs.getString("label"));
-                case USER ->  this.makeUser(rs.getInt("id_" + table), rs.getString("label"));
-            }
-        }
-    }
-
-    private Architect makeArchitect(int id, String label){
-        Architect object = new Architect();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Building makeBuilding(int id){
-        Building object = new Building();
-        object.setId(id);
-        return object;
-    }
-
-    private City makeCity(int id, String label){
-        City object = new City();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Country makeCountry(int id, String label){
-        Country object = new Country();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private FavList makeFavlist(int user, int[] buildingId){
-        FavList object = new FavList();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Frame makeFrame(int id, String label){
-        Frame object = new Frame();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Material makeMaterial(int id, String label){
-        Material object = new Material();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Role makeRole(int id, String label){
-        Role object = new Role();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private RoofType makeRoofType(int id, String label){
-        RoofType object = new RoofType();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Style makeStyle(int id, String label){
-        Style object = new Style();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private Type makeType(int id, String label){
-        Type object = new Type();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
-    }
-
-    private User makeUser(int id, String label){
-        User object = new User();
-        object.setId(id);
-        object.setLabel(label);
-        return object;
     }
 }

@@ -13,12 +13,12 @@ public class Style {
         this.label = label;
     }
 
-    public int getIdStyle() {
+    public int getId() {
         return id;
     }
 
-    public void setIdStyle(int idStyle) {
-        this.id = idStyle;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {

@@ -12,12 +12,12 @@ public class Architect {
         this.label = label;
     }
 
-    public int getIdArch() {
+    public int getId() {
         return id;
     }
 
-    public void setIdArch(int idArch) {
-        this.id = idArch;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLabel() {
