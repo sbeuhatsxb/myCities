@@ -16,6 +16,7 @@ public class Main extends Application implements Env {
     private DataHandler database;
     private Stage primaryStage;
     private BorderPane rootLayout;
+	private Stage nextStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,10 +26,11 @@ public class Main extends Application implements Env {
         this.primaryStage.setTitle("Visit My Cities");
 //
         initRootLayout();
-        showCityOverview();
+        showLoginOverview();
 
     }
 
+    
     /**
      * Initializes the root layout.
      */
@@ -65,7 +67,22 @@ public class Main extends Application implements Env {
         }
     }
 
-    /**
+    
+    public void showLoginOverview() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/LoginOverview.fxml"));
+            AnchorPane loginOverview = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(loginOverview);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        /**
      * Returns the main stage.
      * @return
      */
