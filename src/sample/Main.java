@@ -23,8 +23,6 @@ public class Main extends Application implements Env {
 
     }
 
-
-
     public static void main(String[] args) {
         launch(args);
     }
