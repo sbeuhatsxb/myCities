@@ -2,19 +2,36 @@ package entities;
 
 public class Building {
 
-    private int id, windows, year;
-    private Architect architect;
+    private int id;
+    private String name;
+    private int windows;
+    private int year;
     private City city;
     private Frame frame;
     private Material material;
     private Type type;
     private RoofType roofType;
     private Style style;
-    private String name, description, image;
+    private String description;
+    private String image;
+    private Architect architect;
 
     public Building() {
     }
 
+    public Building(String name, int windows, int year, City city, Frame frame, Material material, Type type, RoofType roofType, Style style, String description, String image) {
+        this.name = name;
+        this.windows = windows;
+        this.year = year;
+        this.city = city;
+        this.frame = frame;
+        this.material = material;
+        this.type = type;
+        this.roofType = roofType;
+        this.style = style;
+        this.description = description;
+        this.image = image;
+    }
 
     public int getId() {
         return id;
