@@ -10,7 +10,7 @@ public class Building {
     private Type type;
     private RoofType roofType;
     private Style style;
-    private String description, image;
+    private String name, description, image;
 
     public Building() {
     }
@@ -110,5 +110,13 @@ public class Building {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

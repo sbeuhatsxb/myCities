@@ -7,6 +7,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DataHandler implements Env {
 
@@ -20,7 +21,6 @@ public class DataHandler implements Env {
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
                 System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
             }
 
         } catch (SQLException e) {
@@ -278,7 +278,6 @@ public class DataHandler implements Env {
             }
         }
 
-
         Favlist favlist = new Favlist();
 
         favlist.setIdUser(user);
@@ -341,6 +340,32 @@ public class DataHandler implements Env {
         return object;
     }
 
+    private static void insertNewBuilding(Building building){
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String name = ((building.getName() == null) ? null : building.getName());
+            String description = ((building.getDescription() == null) ? null : building.getDescription());
+            String image = ((building.getImage() == null) ? null : building.getImage());
+            int year = ((building.getYear() == 0) ? 0 : building.getYear());
+            int windows = ((building.getWindows() == 0) ? 0 : building.getWindows());
+            int idCity = ((building.getCity().getId() == 0) ? 0 : building.getCity().getId());
+            int idArchitect = ((building.getArchitect().getId() == 0) ? 0 : building.getArchitect().getId());
+            int idType = ((building.getType().getId() == 0) ? 0 : building.getType().getId());
+            int idStyle = ((building.getStyle().getId() == 0) ? 0 : building.getStyle().getId());
+            int idMaterial = ((building.getMaterial().getId() == 0) ? 0 : building.getMaterial().getId());
+            int idRoofType = ((building.getRoofType().getId() == 0) ? 0 : building.getRoofType().getId());
+            int idFrame = ((building.getFrame().getId() == 0) ? 0 : building.getFrame().getId());
+
+            String query = "INSERT INTO user (name, description, image, year, windows, id_city, id_architect, id_type, id_style, id_material, id_roof_type, id_frame)" +
+                    " VALUES (\"" + name + "\", \"" + description + "\", \"" + image + "\", \"" + year + "\", \"" + windows + "\", \"" + idCity + "\", \"" + idArchitect + "\", \"" + idType + "\", \"" + idStyle + "\", \"" + idMaterial + "\", \"" + idRoofType + "\", \"" + idFrame + "\", );";
+            stmt.execute(query);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+
     private static void createTables() {
 
         String createTable_role = "CREATE TABLE role(\n" +
@@ -395,6 +420,7 @@ public class DataHandler implements Env {
 
         String createTable_building = "CREATE TABLE building(\n" +
                 "\tid_building     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,\n" +
+                "\tname     TEXT,\n" +
                 "\tdescription     TEXT,\n" +
                 "\timage     TEXT,\n" +
                 "\tyear            INTEGER ,\n" +
@@ -528,7 +554,31 @@ public class DataHandler implements Env {
                 }
             }
 
+            //Insert favorites
+            for (int i = 1; i <= 4 ; i++ ){
+                int randomBuilding = new Random().nextInt(3)+1;
+                String query = "INSERT INTO favlist (id_building, id_user) VALUES (" + randomBuilding + "," + i + ");";
+                stmt.execute(query);
+                int randomBuilding2 = 0;
+                do{
+                    randomBuilding2 = new Random().nextInt(3)+1;
+                } while (randomBuilding == randomBuilding2);
+                query = "INSERT INTO favlist (id_building, id_user) VALUES (" + randomBuilding2 + "," + i + ");";
+                stmt.execute(query);
+            }
+
+            //Insert users
+            String query = "INSERT INTO user (login, password, id_role) VALUES (\"magomed\", \"mycities\", 1);";
+            stmt.execute(query);
+            query = "INSERT INTO user (login, password, id_role) VALUES (\"frédéric\", \"mycities\", 1);";
+            stmt.execute(query);
+            query = "INSERT INTO user (login, password, id_role) VALUES (\"sebastien\", \"mycities\", 1);";
+            stmt.execute(query);
+            query = "INSERT INTO user (login, password, id_role) VALUES (\"utilisateur\", \"mycities\", 2);";
+            stmt.execute(query);
+
             System.out.println("Tables inserted.");
+            System.out.println("A new database has been created.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

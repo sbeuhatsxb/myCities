@@ -21,8 +21,6 @@ public class ObjectProvider {
     public Favlist getFavlist(int userId){
         List<Object> favlists = database.getFilteredById(Env.FAVLIST, userId, "id_user");
         Favlist favlist = (Favlist) favlists.get(0);
-
-
         return favlist;
     }
 
@@ -41,9 +39,6 @@ public class ObjectProvider {
         List<Object> cities = database.getAll(Env.CITY);
         return cities;
     }
-
-
-
 
 
 }
