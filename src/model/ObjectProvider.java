@@ -1,9 +1,6 @@
 package model;
 
-import entities.Building;
-import entities.City;
-import entities.Favlist;
-import entities.User;
+import entities.*;
 import resources.Env;
 
 import java.util.List;
@@ -17,6 +14,20 @@ public class ObjectProvider {
         List<Object> userGetter = database.getOne(userId, Env.USER);
         User user = (User) userGetter.get(0);
         return user;
+    }
+
+    public Style getStyleById(int styleId){
+        database = new DataHandler();
+        List<Object> styleGetter = database.getOne(styleId, Env.STYLE);
+        Style style = (Style) styleGetter.get(0);
+        return style;
+    }
+
+    public Type getTypeById(int typeId){
+        database = new DataHandler();
+        List<Object> typeGetter = database.getOne(typeId, Env.TYPE);
+        Type type = (Type) typeGetter.get(0);
+        return type;
     }
 
     public Favlist getFavlist(int userId){
@@ -52,6 +63,15 @@ public class ObjectProvider {
         return city;
     }
 
+
+
+    public User getUserByLogin(String login){
+        database = new DataHandler();
+        List<Object> userList = database.getFilteredStringByColumn(Env.USER, login, "login");
+        User user = (User) userList.get(0);
+        return user;
+    }
+
     public List<Object> getBuildingsByCity(City city){
         database = new DataHandler();
         int cityId = city.getId();
@@ -60,11 +80,27 @@ public class ObjectProvider {
         return buildings;
     }
 
-    public User getUserByLogin(String login){
+    public List<Object> getBuildingByYear(int year){
         database = new DataHandler();
-        List<Object> userList = database.getFilteredStringByColumn(Env.USER, login, "login");
-        User user = (User) userList.get(0);
-        return user;
+        List<Object> buildings = database.getFilteredIntByColumn(Env.BUILDING, year, "year");
+
+        return buildings;
+    }
+
+    public List<Object> getBuildingByStyle(Style style){
+        database = new DataHandler();
+        int styleId = style.getId();
+        List<Object> buildings = database.getFilteredIntByColumn(Env.BUILDING, styleId, "id_style");
+
+        return buildings;
+    }
+
+    public List<Object> getBuildingByType(Type type){
+        database = new DataHandler();
+        int typeId = type.getId();
+        List<Object> buildings = database.getFilteredIntByColumn(Env.BUILDING, typeId, "id_type");
+
+        return buildings;
     }
 
 

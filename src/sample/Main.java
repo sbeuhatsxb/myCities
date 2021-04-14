@@ -73,8 +73,6 @@ public class Main extends Application implements Env {
         return primaryStage;
     }
 
-
-
     public static void main(String[] args) {
         launch(args);
     }
