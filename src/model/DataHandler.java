@@ -91,6 +91,21 @@ public class DataHandler implements Env {
         return null;
     }
 
+    public static boolean checkIfFavlistIsAlreadySet(int buildingId, int userId) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM favlist WHERE id_building = "+buildingId+" AND id_user = "+userId+";";
+
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
     public static List<Object> getFilteredIntByColumn(String table, int filter) {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
@@ -121,6 +136,21 @@ public class DataHandler implements Env {
         return null;
     }
 
+    public static List<Object> getFilteredStringByColumn(String table, String filter, String column) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "SELECT * FROM "+table+" WHERE "+column+" = \""+filter+"\";";
+
+            ResultSet rs = stmt.executeQuery(query);
+
+            return objectTransformer(rs, table);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     private static List<Object> objectTransformer(ResultSet rs, String table) throws SQLException {
         List<Object> objectList;
         objectList = new ArrayList();
@@ -134,6 +164,7 @@ public class DataHandler implements Env {
                 case BUILDING -> {
                     objectList.add(makeBuilding(
                             rs.getInt("id_" + table),
+                            rs.getString("name"),
                             rs.getString("description"),
                             rs.getInt("windows"),
                             rs.getInt("year"),
@@ -203,6 +234,7 @@ public class DataHandler implements Env {
 
     private static Building makeBuilding(
             int id,
+            String name,
             String description,
             int windows,
             int year,
@@ -223,6 +255,7 @@ public class DataHandler implements Env {
         object.setYear(year);
         object.setImage(image);
         object.setDescription(description);
+        object.setName(name);
         if(getOne(id_architect, ARCHITECT).size() != 0 && !getOne(id_architect, ARCHITECT).equals(null)){
             Architect architect = (Architect) getOne(id_architect, ARCHITECT).get(0);
             object.setArchitect(architect);
@@ -331,7 +364,7 @@ public class DataHandler implements Env {
         User object = new User();
         object.setId(id);
         object.setLogin(login);
-        object.setLogin(password);
+        object.setPassword(password);
         if(getFilteredIntByColumn(Env.ROLE, id_role).size() != 0 && !getFilteredIntByColumn(Env.ROLE, id_role).equals(null)){
             Role role = (Role) getFilteredIntByColumn(Env.ROLE, id_role).get(0);
             object.setRole(role);
@@ -340,7 +373,7 @@ public class DataHandler implements Env {
         return object;
     }
 
-    private static void insertNewBuilding(Building building){
+    public static void insertNewBuilding(Building building){
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
             String name = ((building.getName() == null) ? null : building.getName());
@@ -356,29 +389,29 @@ public class DataHandler implements Env {
             int idRoofType = ((building.getRoofType().getId() == 0) ? 0 : building.getRoofType().getId());
             int idFrame = ((building.getFrame().getId() == 0) ? 0 : building.getFrame().getId());
 
-            String query = "INSERT INTO user (name, description, image, year, windows, id_city, id_architect, id_type, id_style, id_material, id_roof_type, id_frame)" +
+            String query = "INSERT INTO building (name, description, image, year, windows, id_city, id_architect, id_type, id_style, id_material, id_roof_type, id_frame)" +
                     " VALUES (\"" + name + "\", \"" + description + "\", \"" + image + "\", " + year + ", " + windows + ", " + idCity + ", " + idArchitect + ", " + idType + ", " + idStyle + ", " + idMaterial + ", " + idRoofType + ", " + idFrame + ");";
             stmt.execute(query);
+            System.out.println("Building '" + building.getName() + "' created");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void insertNewFavlist(Building building, User user){
+    public static void insertNewFavlist(Building building, User user){
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
             int buildingId = ((building.getId() == 0) ? 0 : building.getId());
             int userId = ((user.getId() == 0) ? 0 : user.getId());
 
-            String query = "INSERT INTO favlist (building_id, user_id)" +
+            String query = "INSERT INTO favlist (id_building, id_user)" +
                     " VALUES (" + buildingId + ", " + userId + ");";
             stmt.execute(query);
+            System.out.println("Favlist created for user "+ user.getLogin());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-
-
 
     private static void createTables() {
 

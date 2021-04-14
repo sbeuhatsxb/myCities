@@ -12,7 +12,7 @@ public class ObjectProvider {
 
     private DataHandler database;
 
-    public User getUser(int userId){
+    public User getUserById(int userId){
         database = new DataHandler();
         List<Object> userGetter = database.getOne(userId, Env.USER);
         User user = (User) userGetter.get(0);
@@ -45,12 +45,26 @@ public class ObjectProvider {
         return cities;
     }
 
+    public City getCityById(int cityId){
+        database = new DataHandler();
+        List<Object> cities = database.getFilteredIntByColumn(Env.CITY, cityId, "id_city");
+        City city = (City) cities.get(0);
+        return city;
+    }
+
     public List<Object> getBuildingsByCity(City city){
         database = new DataHandler();
         int cityId = city.getId();
         List<Object> buildings = database.getFilteredIntByColumn(Env.BUILDING, cityId, "id_city");
 
         return buildings;
+    }
+
+    public User getUserByLogin(String login){
+        database = new DataHandler();
+        List<Object> userList = database.getFilteredStringByColumn(Env.USER, login, "login");
+        User user = (User) userList.get(0);
+        return user;
     }
 
 
