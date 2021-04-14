@@ -12,29 +12,41 @@ public class ObjectProvider {
     public User getUserById(int userId){
         database = new DataHandler();
         List<Object> userGetter = database.getOne(userId, Env.USER);
-        User user = (User) userGetter.get(0);
-        return user;
+        if(userGetter.size() > 0) {
+            User user = (User) userGetter.get(0);
+            return user;
+        }
+        return null;
     }
 
     public Style getStyleById(int styleId){
         database = new DataHandler();
         List<Object> styleGetter = database.getOne(styleId, Env.STYLE);
-        Style style = (Style) styleGetter.get(0);
-        return style;
+        if(styleGetter.size() > 0) {
+            Style style = (Style) styleGetter.get(0);
+            return style;
+        }
+        return null;
     }
 
     public Type getTypeById(int typeId){
         database = new DataHandler();
         List<Object> typeGetter = database.getOne(typeId, Env.TYPE);
-        Type type = (Type) typeGetter.get(0);
-        return type;
+        if(typeGetter.size() > 0) {
+            Type type = (Type) typeGetter.get(0);
+            return type;
+        }
+        return null;
     }
 
     public Favlist getFavlist(int userId){
         database = new DataHandler();
         List<Object> favlists = database.getFilteredIntByColumn(Env.FAVLIST, userId, "id_user");
-        Favlist favlist = (Favlist) favlists.get(0);
-        return favlist;
+        if(favlists.size() > 0) {
+            Favlist favlist = (Favlist) favlists.get(0);
+            return favlist;
+        }
+        return null;
     }
 
     public Building getBuildingById(int buildingId){
@@ -63,13 +75,14 @@ public class ObjectProvider {
         return city;
     }
 
-
-
     public User getUserByLogin(String login){
         database = new DataHandler();
         List<Object> userList = database.getFilteredStringByColumn(Env.USER, login, "login");
-        User user = (User) userList.get(0);
-        return user;
+        if(userList.size() > 0){
+            User user = (User) userList.get(0);
+            return user;
+        }
+        return null;
     }
 
     public List<Object> getBuildingsByCity(City city){
@@ -102,6 +115,4 @@ public class ObjectProvider {
 
         return buildings;
     }
-
-
 }
