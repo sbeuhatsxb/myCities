@@ -591,10 +591,100 @@ public class DataHandler implements Env {
             query = "INSERT INTO user (login, password, id_role) VALUES (\"utilisateur\", \"mycities\", 2);";
             stmt.execute(query);
 
+            //Insert buildings
+            BuildingBuilder building1 = new BuildingBuilder("Le château de Charlottenbourg",0,1713,5,1,1,23,1,15,"Le château de Charlottenbourg, est un château situé dans le quartier de Charlottenbourg à Berlin. C'est la plus ancienne résidence des Hohenzollern et le plus grand palais de Berlin.","1.jpg", getRandom(1000));
+            BuildingBuilder building2 = new BuildingBuilder("Le palais du Reichstag",0,1884,5,1,1,23,5,40,"Le palais du Reichstag est un bâtiment de Berlin en Allemagne, construit pour abriter le Reichstag à partir de 1894 et jusqu'à son incendie dans la nuit du 27 au 28 février 1933. Il abrite le Bundestag de la République fédéralec d'Allemagne depuis le retour des institutions à Berlin en 1999.","2.jpg", getRandom(1000));
+            BuildingBuilder building3 = new BuildingBuilder("Musée de Pergame",0,1910,5,1,1,14,5,20,"Le musée de Pergame est un musée archéologique de Berlin, situé sur l'île aux Musées. Le musée propose une collection d‘antiquités, un département du Proche-Orient et un musée de l'Art islamique. Il est connu pour ses reconstitutions d'œuvres monumentales comme la porte d'Ishtar, le grand autel de Pergame, la porte du marché de Milet et la façade du palais de Mchatta.","3.jpg", getRandom(1000));
+            BuildingBuilder building4 = new BuildingBuilder("Musée du Prado",0,1819,55,1,1,14,5,40,"Le musée du Prado à Madrid est l'une des plus grandes et des plus importantes pinacothèques du monde. Il présente principalement des peintures européennes du XIVᵉ siècle au début du XIXᵉ siècle, collectionnées par les Habsbourg et les Bourbons.","4.jpg", getRandom(1000));
+            BuildingBuilder building5 = new BuildingBuilder("Musée national Thyssen-Bornemisza",0,1992,55,2,3,14,5,40,"Le musée national Thyssen-Bornemisza est un musée d'art ancien, moderne et contemporain situé à Madrid. Son origine tient dans l'acquisition qu'a faite le gouvernement espagnol, en juillet 1993, de la majeure partie de la collection d'art réunie, à Lugano, par la famille Thyssen-Bornemisza, en complément des pinacothèques et des collections nationales déjà existantes.","5.jpg", getRandom(1000));
+            BuildingBuilder building6 = new BuildingBuilder("Palais royal de Madrid",0,1764,55,1,1,23,5,15,"Le palais royal de Madrid est la résidence officielle du roi d'Espagne. Les rois actuels ne résident pas en son sein, mais plutôt au palais de la Zarzuela. Le palais royal est utilisé pour des fonctions protocolaires. Avec une superficie de 135 000 m² et 3 418 pièces, c'est le plus grand palais royal d'Europe occidentale et l'un des plus grands au monde.","6.jpg", getRandom(1000));
+            BuildingBuilder building7 = new BuildingBuilder("Capitole des EU",0,1812,58,2,1,25,5,40,"Le Capitole des États-Unis est le bâtiment qui sert de siège au Congrès, le pouvoir législatif des États-Unis. Il est situé dans la capitale fédérale, Washington, D.C.","7.jpg", getRandom(1000));
+            BuildingBuilder building8 = new BuildingBuilder("National Gallery of Art",0,1937,58,2,1,14,5,40,"La National Gallery of Art, est un musée américain situé à Washington, l'un des plus grands du monde. Il est administré par le gouvernement fédéral des États-Unis et son entrée est gratuite. Les collections sont réparties dans deux bâtiments reliés par une galerie souterraine sous le Mall : le bâtiment Est et le bâtiment Ouest. La NGA est affiliée à la Smithsonian Institution.","8.jpg", getRandom(1000));
+            BuildingBuilder building9 = new BuildingBuilder("Washington Monument",0,1884,58,2,1,24,5,24,"Le Washington Monument est un obélisque de plus de 169 mètres de haut, inauguré le 21 février 1885 en l'honneur de George Washington, le premier président des États-Unis, et situé à Washington, D.C. Fait de marbre, de grès et de granit, il est construit en maçonnerie.","9.jpg", getRandom(1000));
+            BuildingBuilder building10 = new BuildingBuilder("La tour Eiffel",0,1889,62,2,21,30,0,35,"La tour Eiffel est une tour de fer puddlé de 324 mètres de hauteur située à Paris, à l'extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7ᵉ arrondissement. Son adresse officielle est 5, avenue Anatole-France.touristique de premier plan : il s'agit du troisième site culturel français payant le plus visité en 2015, avec 5,9 millions de visiteurs en 2016.","10.jpg", getRandom(1000));
+            BuildingBuilder building11 = new BuildingBuilder("La cathédrale Notre-Dame",0,1163,62,1,1,26,2,27,"La cathédrale Notre-Dame de Paris, communément appelée Notre-Dame, est l'un des monuments les plus emblématiques de Paris et de la France. Elle est située sur l'île de la Cité et est un lieu de culte catholique, siège de l'archidiocèse de Paris, dédiée à la Vierge Marie.","11.jpg", getRandom(1000));
+            BuildingBuilder building12 = new BuildingBuilder("Le château de Versailles",0,2017,62,1,1,23,2,20,"Le château de Versailles est un château et un monument historique français qui se situe à Versailles, dans les Yvelines, en France. Il fut la résidence des rois de France Louis XIV, Louis XV et Louis XVI. Le roi et la cour y résidèrent de façon permanente du 6 mai 1682 au 6 octobre 1789, à l'exception des années de la Régence de 1715 à 1723. Situés au sud-ouest de Paris, ce château et son domaine visaient à glorifier la monarchie française","12.jpg", getRandom(1000));
+            BuildingBuilder building13 = new BuildingBuilder("La basilique Saint-Pierre",0,1626,86,1,1,11,2,43,"La basilique Saint-Pierre est le plus important édifice religieux du catholicisme. Elle est située au Vatican, sur la rive droite du Tibre, et sa façade s'ouvre sur la place Saint-Pierre. Elle a été construite là où, sous la volonté de l'empereur Constantin Iᵉʳ, les premiers pèlerins venaient rendre un culte à saint Pierre à l'emplacement du cirque de Caligula et de Néron.","13.jpg", getRandom(1000));
+            BuildingBuilder building14 = new BuildingBuilder("La chapelle Sixtine",0,1483,86,1,1,27,2,43,"La chapelle Sixtine, appelée originellement chapelle de Sixte, est une des salles des palais pontificaux du Vatican et fait partie des Musées du Vatican. Remplaçant la chapelle Pauline puis le palais du Quirinal, la chapelle Sixtine est le lieu où, traditionnellement depuis le XVᵉ siècle, les cardinaux réunis en conclave élisent le nouveau pape, et obligatoirement depuis la constitution apostolique édictée par Jean-Paul II en 1996, intitulée Universi Dominici gregis. La plus grande chapelle du Vatican doit son nom au pape Sixte IV, qui la fit bâtir de 1477 à 1483.","14.jpg", getRandom(1000));
+            BuildingBuilder building15 = new BuildingBuilder("Le Panthéon",0,125,86,1,1,28,0,49,"Le Panthéon de Rome est un édifice religieux antique situé sur la piazza della Rotonda (Rome), bâti sur l'ordre d'Agrippa au Iᵉʳ siècle av. J.-C. Endommagé par plusieurs incendies, il fut entièrement reconstruit sous Hadrien. À l'origine, le Panthéon était un temple dédié à toutes les divinités de la religion antique. ","15.jpg", getRandom(1000));
+            BuildingBuilder building16 = new BuildingBuilder("British Museum",0,1759,151,1,1,14,2,40,"Le British Museum, est un musée de l'histoire et de la culture humaine, situé à Londres, au Royaume-Uni. Ses collections, constituées de plus de sept millions d'objets, sont parmi les plus importantes du monde et proviennent de tous les continents. Elles illustrent l'histoire humaine de ses débuts à aujourd'hui. Le musée a été fondé en 1753 et ouvert au public en 1759.","16.jpg", getRandom(1000));
+            BuildingBuilder building17 = new BuildingBuilder("La cathédrale Saint-Paul",0,1710,151,1,1,26,2,20,"La cathédrale Saint-Paul de Londres est la cathédrale du diocèse de Londres de l'Église d'Angleterre. Elle a été construite après la destruction de l'ancien édifice lors du grand incendie de Londres de 1666. Elle couronne Ludgate Hill, site qui accueillit quatre sanctuaires avant la cathédrale actuelle et se trouve dans la Cité de Londres, cœur historique de la ville devenu aujourd'hui le principal quartier d'affaires londonien.","17.jpg", getRandom(1000));
+            BuildingBuilder building18 = new BuildingBuilder("La tour de Londres",0,1285,151,1,1,29,2,41,"La tour de Londres, en anglais Tower of London est une forteresse historique située sur la rive nord de la Tamise à Londres en Angleterre à côté du Tower Bridge. La tour se trouve dans le borough londonien de Tower Hamlets situé à l'est de la Cité de Londres dans un espace appelé Tower Hill. Sa construction commença vers la fin de l'année 1066 dans le cadre de la conquête normande de l'Angleterre.","18.jpg", getRandom(1000));
+
+            List<BuildingBuilder> buildingBuilderList = new ArrayList<>();
+
+            buildingBuilderList.add(building1);
+            buildingBuilderList.add(building2);
+            buildingBuilderList.add(building3);
+            buildingBuilderList.add(building4);
+            buildingBuilderList.add(building5);
+            buildingBuilderList.add(building6);
+            buildingBuilderList.add(building7);
+            buildingBuilderList.add(building8);
+            buildingBuilderList.add(building9);
+            buildingBuilderList.add(building10);
+            buildingBuilderList.add(building11);
+            buildingBuilderList.add(building12);
+            buildingBuilderList.add(building13);
+            buildingBuilderList.add(building14);
+            buildingBuilderList.add(building15);
+            buildingBuilderList.add(building16);
+            buildingBuilderList.add(building17);
+            buildingBuilderList.add(building18);
+
+
+            for( BuildingBuilder building : buildingBuilderList){
+                String name = building.getName();
+                String description = building.getDescription();
+                String image = building.getImage();
+                int year = building.getYear();
+                int windows = building.getWindows();
+                int idCity = building.getCity();
+                int idStyle = building.getStyle();
+                int idType = building.getType();
+                int idMaterial = building.getMaterial();
+                int idRoof = building.getRoofType();
+                int idFrame = building.getFrame();
+                int idArchitect = building.getArchitect();
+
+                query = "INSERT INTO building (" +
+                        "name, " +
+                        "windows, " +
+                        "year, " +
+                        "id_city, " +
+                        "id_frame, " +
+                        "id_material, " +
+                        "id_type, " +
+                        "id_roof_type, " +
+                        "id_style, " +
+                        "id_architect, " +
+                        "description, " +
+                        "image) " +
+                        "VALUES (" +
+                        "\""+name+"\", " +
+                        ""+windows+", " +
+                        ""+year+",  " +
+                        ""+idCity+", " +
+                        ""+idFrame+", " +
+                        ""+idMaterial+", " +
+                        ""+idType+", " +
+                        ""+idRoof+", " +
+                        ""+idStyle+", " +
+                        ""+idArchitect+", " +
+                        "\""+description+"\", " +
+                        "\""+image+"\");";
+
+                stmt.execute(query);
+            }
+
             System.out.println("Tables inserted.");
             System.out.println("A new database has been created.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static int getRandom(int number){
+        return new Random().nextInt(number)+1;
     }
 }
