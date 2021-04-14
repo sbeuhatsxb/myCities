@@ -20,7 +20,6 @@ public class Main extends Application implements Env {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1440, 1024));
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {
