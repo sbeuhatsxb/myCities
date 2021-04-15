@@ -62,11 +62,7 @@ public class ObjectProvider {
         return buildings;
     }
 
-    public List<Object> getAllCities(){
-        database = new DataHandler();
-        List<Object> cities = database.getAll(Env.CITY);
-        return cities;
-    }
+
 
     public City getCityById(int cityId){
         database = new DataHandler();
@@ -134,5 +130,41 @@ public class ObjectProvider {
         List<Object> buildings = database.getFilteredIntByColumn(Env.BUILDING, typeId, "id_type");
 
         return buildings;
+    }
+
+    public List<Object> getAllTypes(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.TYPE);
+        return buildings;
+    }
+
+    public List<Object> getAllStyles(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.STYLE);
+        return buildings;
+    }
+
+    public List<Object> getAllRoofTypes(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.ROOF_TYPE);
+        return buildings;
+    }
+
+    public List<Object> getAllMaterial(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.MATERIAL);
+        return buildings;
+    }
+
+    public List<Object> getAllFrames(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.FRAME);
+        return buildings;
+    }
+
+    public List<Object> getAllCities(){
+        database = new DataHandler();
+        List<Object> cities = database.getAll(Env.CITY);
+        return cities;
     }
 }
