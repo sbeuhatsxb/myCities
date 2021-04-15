@@ -29,7 +29,6 @@ public class Main extends Application implements Env {
 
     }
 
-
     /**
      * Initializes the root layout.
      */
@@ -37,7 +36,7 @@ public class Main extends Application implements Env {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("/resources/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -56,7 +55,7 @@ public class Main extends Application implements Env {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/CityOverview.fxml"));
+            loader.setLocation(Main.class.getResource("/resources/CityOverview.fxml"));
             AnchorPane cityOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
@@ -66,22 +65,33 @@ public class Main extends Application implements Env {
         }
     }
 
-
     public void showLoginOverview() {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/LoginOverview.fxml"));
+            loader.setLocation(Main.class.getResource("/resources/LoginOverview.fxml"));
             AnchorPane loginOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(loginOverview);
         } catch (IOException e) {
+        }
+    }
+
+    public void showCityList() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/resources/CityList.fxml"));
+            AnchorPane cityOverview = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(cityOverview);
+        } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
 
-        /**
+    /**
      * Returns the main stage.
      * @return
      */

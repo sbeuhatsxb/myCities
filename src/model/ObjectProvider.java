@@ -75,6 +75,16 @@ public class ObjectProvider {
         return city;
     }
 
+    public City getCityByName(String label){
+        database = new DataHandler();
+        List<Object> cityList = database.getFilteredStringByColumn(Env.CITY, label, "label");
+        if(cityList.size() > 0){
+            City city = (City) cityList.get(0);
+            return city;
+        }
+        return null;
+    }
+
     public User getUserByLogin(String login){
         database = new DataHandler();
         List<Object> userList = database.getFilteredStringByColumn(Env.USER, login, "login");
