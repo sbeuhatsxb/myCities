@@ -155,7 +155,7 @@ public class LoginOverviewController {
     	try {
             FXMLLoader loader = new FXMLLoader();
             
-             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+             loader.setLocation(getClass().getResource("/resources/CityOverview.fxml"));
             
            
             Parent viewParent = loader.load();
