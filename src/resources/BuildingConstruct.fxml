@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -10,10 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="fxDesc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="622.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.BiildingConstructController">
    <children>
-      <GridPane layoutX="42.0" layoutY="14.0" prefHeight="228.0" prefWidth="252.0">
+      <GridPane layoutX="20.0" layoutY="21.0" prefHeight="228.0" prefWidth="252.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,22 +40,22 @@
             <Label text="toit" GridPane.rowIndex="7" />
             <Label text="frame" GridPane.rowIndex="8" />
             <Label text="style" GridPane.rowIndex="9" />
+            <ChoiceBox fx:id="fxCity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="fxArchitect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="fxType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="fxMaterial" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="fxToit" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="fxFrame" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ChoiceBox fx:id="fxStyle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label text="Name" />
+            <TextField fx:id="fxName" GridPane.columnIndex="1" />
             <TextField fx:id="fxYear" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="fxWindows" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="fxCity" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="fxArchitect" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="fxType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="fxMaterial" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="fxRoof" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="fxFrame" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="fxStyle" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label text="Nom" />
-            <TextField fx:id="fxName" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <TextArea fx:id="fxDesc" layoutX="-25.0" layoutY="293.0" prefHeight="86.0" prefWidth="418.0" />
       <ImageView fx:id="fxImg" fitHeight="150.0" fitWidth="200.0" layoutX="389.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="fxInsert" layoutX="477.0" layoutY="324.0" mnemonicParsing="false" text="Ajouter" />
+      <Button fx:id="fxInsert" layoutX="477.0" layoutY="324.0" mnemonicParsing="false" onAction="#insertion" text="Ajouter" />
       <Label layoutX="420.0" layoutY="14.0" prefHeight="71.0" prefWidth="169.0" text="Creeer un nouveau Batiment" />
+      <TextArea fx:id="fxDesc" layoutX="55.0" layoutY="261.0" prefHeight="118.0" prefWidth="376.0" />
    </children>
-</AnchorPane>
+</fx:root>
