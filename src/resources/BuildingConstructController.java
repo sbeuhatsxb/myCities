@@ -85,19 +85,19 @@ public class BuildingConstructController {
     }
     
     private void loadCity() {
-        list.removeAll(list);
+    	 list.removeAll(list);
 
-        List<Object> citiesGetter = objectProvider.getAllBuildings();
-        HashSet<String> cities = new HashSet<>();
-        String cityName;
-        for (int i = 0; i < citiesGetter.size(); i++) {
-            Building city = (Building) citiesGetter.get(i);
-            cityName = city.getCity().getLabel();
-            cities.add(cityName);
-        }
+         List<Object> citiesGetter = objectProvider.getAllBuildings();
+         HashSet<String> cities = new HashSet<>();
+         String cityName;
+         for (int i = 0; i < citiesGetter.size(); i++) {
+             Building city = (Building) citiesGetter.get(i);
+             cityName = city.getCity().getLabel();
+             cities.add(cityName);
+         }
 
-        list.addAll(cities);
-        fxCity.getItems().addAll(list);
+         list.addAll(cities);
+         fxCity.getItems().addAll(list);
     }
 	    
 	  
