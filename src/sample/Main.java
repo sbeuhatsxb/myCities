@@ -1,7 +1,5 @@
 package sample;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.DataHandler;
 import resources.Env;
+
+import java.io.IOException;
 
 public class Main extends Application implements Env {
     private DataHandler database;
@@ -27,9 +27,10 @@ public class Main extends Application implements Env {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1440, 1024));
         primaryStage.show();
-        
+
         initRootLayout();
-        showCityOverview();
+        showCityList();
+        //showCityOverview();
 
     }
 
@@ -42,7 +43,7 @@ public class Main extends Application implements Env {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(Main.class.getResource("/resources/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.
@@ -61,12 +62,24 @@ public class Main extends Application implements Env {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/CityOverview.fxml"));
+            loader.setLocation(Main.class.getResource("/resources/CityOverview.fxml"));
             AnchorPane cityOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(cityOverview);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showCityList() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/resources/CityList.fxml"));
+            AnchorPane cityOverview = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(cityOverview);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
