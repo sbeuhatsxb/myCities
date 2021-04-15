@@ -60,16 +60,34 @@ public class LoginOverviewController {
     }
 
     public void startUserSession(ActionEvent event,User user) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//
+//             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+//
+//            Parent viewParent = loader.load();
+//
+//            Scene cityBuildingList = new Scene(viewParent);
+//            CityList controleur =  loader.getController();
+//            controleur.initData(user);
+//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//
+//            window.setScene(cityBuildingList);
+//
+//            window.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         try {
             FXMLLoader loader = new FXMLLoader();
 
-             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+            loader.setLocation(getClass().getResource("/resources/BuildingEditDetail.fxml"));
 
             Parent viewParent = loader.load();
 
             Scene cityBuildingList = new Scene(viewParent);
-            CityList controleur =  loader.getController();
-            controleur.initData(user);
+            BuildingEditDetail controleur =  loader.getController();
+            controleur.loadData();
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             window.setScene(cityBuildingList);
@@ -78,7 +96,6 @@ public class LoginOverviewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
     private void startAdminSession(ActionEvent event) {

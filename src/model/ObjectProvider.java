@@ -167,4 +167,10 @@ public class ObjectProvider {
         List<Object> cities = database.getAll(Env.CITY);
         return cities;
     }
+
+    public List<Object> getAllArchitects(){
+        database = new DataHandler();
+        List<Object> cities = database.getAll(Env.ARCHITECT);
+        return cities;
+    }
 }

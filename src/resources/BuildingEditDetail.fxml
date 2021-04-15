@@ -46,9 +46,9 @@
                   <Label text="Type de toiture" GridPane.rowIndex="7" />
                   <Label text="Charpente" GridPane.rowIndex="8" />
                   <Label text="Ville" GridPane.rowIndex="9" />
-                   <TextField fx:id="fxYear" editable="true" mouseTransparent="true" GridPane.columnIndex="1" />
-                   <TextField fx:id="fxName" editable="true" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                   <TextField fx:id="fxImage" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                   <TextField fx:id="fxYear" GridPane.columnIndex="1" />
+                   <TextField fx:id="fxName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                   <TextField fx:id="fxImage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="fxArchitect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ChoiceBox fx:id="fxStyle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="fxType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
