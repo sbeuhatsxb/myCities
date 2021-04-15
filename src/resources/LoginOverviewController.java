@@ -1,6 +1,5 @@
 package resources;
 
-import entities.Building;
 import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,46 +60,46 @@ public class LoginOverviewController {
     }
 
     public void startUserSession(ActionEvent event,User user) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader();
-//
-//             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
-//
-//            Parent viewParent = loader.load();
-//
-//            Scene cityBuildingList = new Scene(viewParent);
-//            CityList controleur =  loader.getController();
-//            controleur.initData(user);
-//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//
-//            window.setScene(cityBuildingList);
-//
-//            window.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         try {
             FXMLLoader loader = new FXMLLoader();
 
-            loader.setLocation(getClass().getResource("/resources/BuildingEditDetail.fxml"));
+             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
 
             Parent viewParent = loader.load();
 
             Scene cityBuildingList = new Scene(viewParent);
-            BuildingEditDetail controleur =  loader.getController();
-            controleur.loadData();
+            CityList controleur =  loader.getController();
+            controleur.initData(user);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            BuildingEditDetail truc =  loader.getController();
 
-            ObjectProvider objectProvider = new ObjectProvider();
-            Building building = objectProvider.getBuildingById(1);
-            truc.initData(building);
             window.setScene(cityBuildingList);
 
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//
+//            loader.setLocation(getClass().getResource("/resources/BuildingEditDetail.fxml"));
+//
+//            Parent viewParent = loader.load();
+//
+//            Scene cityBuildingList = new Scene(viewParent);
+//            BuildingEditDetail controleur =  loader.getController();
+//            controleur.loadData();
+//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            BuildingEditDetail truc =  loader.getController();
+//
+//            ObjectProvider objectProvider = new ObjectProvider();
+//            Building building = objectProvider.getBuildingById(1);
+//            truc.initData(building);
+//            window.setScene(cityBuildingList);
+//
+//            window.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
     private void startAdminSession(ActionEvent event) {
