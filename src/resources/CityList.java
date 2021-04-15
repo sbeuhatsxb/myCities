@@ -44,7 +44,7 @@ public class CityList {
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayCitesListChoiceBox.getValue();
         if (selected == null) {
-            text.setText("Choisissez une ville");
+            text.setText("Veuillez choisir une ville");
         } else {
             selectedCity = selected;
             changeSceneVToBuildingsListView(actionEvent);
@@ -115,5 +115,5 @@ public class CityList {
             e.printStackTrace();
         }
     }
-    
+
 }
