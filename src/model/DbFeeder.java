@@ -12,12 +12,15 @@ public class DbFeeder {
         database.insertNewBuilding(building);
     }
 
-    public void addToFavlist(Building building, User user){
+    public boolean addToFavlist(Building building, User user){
         database = new DataHandler();
         if(!database.checkIfFavlistIsAlreadySet(building.getId(), user.getId())){
             database.insertNewFavlist(building, user);
+            System.out.println("test");
+            return true;
         } else {
             System.out.println("FavList already recorded");
+            return false;
         }
     }
 

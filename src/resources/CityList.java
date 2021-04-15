@@ -1,28 +1,27 @@
 package resources;
 
 import entities.Building;
+import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ObjectProvider;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class CityList implements Initializable {
+public class CityList  {
     public TextField text;
     @FXML
     public Button showSelectedCityBtn;
@@ -30,11 +29,17 @@ public class CityList implements Initializable {
     ObservableList list = FXCollections.observableArrayList();
     ObjectProvider objectProvider = new ObjectProvider();
     String selectedCity;
+    User currentUser;
 
-    /**
-     * Get
-     * @param actionEvent
-     */
+
+    @FXML
+    private Label welcom;
+
+
+    public void initData(User user) {
+    	currentUser = user;
+    	loadData();
+    }
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayCitesListChoiceBox.getValue();
         if(selected == null){
@@ -56,7 +61,7 @@ public class CityList implements Initializable {
 
             //Access controller
             CityBuildingList controller = loader.getController();
-            controller.initData(selectedCity);
+            controller.initData(selectedCity, currentUser);
 
             Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -68,11 +73,6 @@ public class CityList implements Initializable {
             e.printStackTrace();
         }
 
-    }
-
-
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadData();
     }
 
     private void loadData(){

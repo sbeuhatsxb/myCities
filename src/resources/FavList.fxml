@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="resources.FavList"
+            prefHeight="1024.0" prefWidth="768.0">
+    <children>
+        <VBox prefHeight="200.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TextField fx:id="text" editable="false" mouseTransparent="true" />
+                <Label text="Choisissez un bâtiment :">
+                    <font>
+                        <Font size="34.0" />
+                    </font>
+                    <padding>
+                        <Insets left="350.0" top="250.0" />
+                    </padding>
+                </Label>
+                <ChoiceBox fx:id="displayBuildingListChoiceBox" prefHeight="26.0" prefWidth="240.0">
+                    <VBox.margin>
+                        <Insets left="400.0" top="30.0" />
+                    </VBox.margin>
+                </ChoiceBox>
+                <ButtonBar prefHeight="40.0" prefWidth="90.0">
+                    <buttons>
+                        <Button fx:id="showSelectedCityBtn" mnemonicParsing="false" onAction="#showSelectedCity" text="OK" textAlignment="CENTER" />
+                    </buttons>
+                    <padding>
+                        <Insets right="460.0" />
+                    </padding>
+                </ButtonBar>
+            </children></VBox>
+    </children>
+</AnchorPane>

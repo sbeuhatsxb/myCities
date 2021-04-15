@@ -2,6 +2,7 @@ package resources;
 
 import entities.Building;
 import entities.City;
+import entities.Favlist;
 import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
-public class CityBuildingList {
+public class FavList {
     ObjectProvider objectProvider = new ObjectProvider();
     ObservableList list = FXCollections.observableArrayList();
     public ChoiceBox displayBuildingListChoiceBox;
@@ -28,10 +29,23 @@ public class CityBuildingList {
     Building building;
     public TextField text;
 
-    public void initData(String selectedCity, User currentUser) {
+    public void initData(User currentUser) {
         user = currentUser;
-        city = objectProvider.getCityByName(selectedCity);
         loadData();
+    }
+
+    private void loadData(){
+        Favlist favlist = objectProvider.getFavlist(user.getId());
+        List<Building> buildings = favlist.getBuildings();
+        list.removeAll(list);
+
+        HashSet<String> buildingsList = new HashSet<>();
+        for(int i = 0; i < buildings.size() ; i++){
+            Building building = (Building) buildings.get(i);
+            buildingsList.add(building.getName());
+        }
+        list.addAll(buildingsList);
+        displayBuildingListChoiceBox.getItems().addAll(list);
     }
 
     /**
@@ -47,20 +61,6 @@ public class CityBuildingList {
             building = objectProvider.getBuildingByName(selected);
             changeSceneToBuildingDetailView(actionEvent);
         }
-    }
-
-    private void loadData(){
-        List buildings = objectProvider.getBuildingsByCity(city);
-
-        list.removeAll(list);
-
-        HashSet<String> buildingsList = new HashSet<>();
-        for(int i = 0; i < buildings.size() ; i++){
-            Building building = (Building) buildings.get(i);
-            buildingsList.add(building.getName());
-        }
-        list.addAll(buildingsList);
-        displayBuildingListChoiceBox.getItems().addAll(list);
     }
 
     public void changeSceneToBuildingDetailView(ActionEvent actionEvent) {

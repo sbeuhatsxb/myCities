@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.LoginOverviewController">
    <children>
-      <BorderPane layoutY="-3.0" prefHeight="406.0" prefWidth="600.0">
+      <BorderPane layoutY="-3.0" prefHeight="768.0" prefWidth="1024.0">
          <top>
-            <AnchorPane prefHeight="41.0" prefWidth="600.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="41.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
          </top>
          <left>
-            <AnchorPane prefHeight="339.0" prefWidth="142.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="339.0" prefWidth="142.0" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="701.0" prefWidth="708.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="info" editable="false" layoutX="81.0" layoutY="35.0" mouseTransparent="true" />
-                  <TextField fx:id="userLogin" layoutX="32.0" layoutY="109.0" prefHeight="26.0" prefWidth="237.0" promptText="login" text="magomed" />
-                  <PasswordField fx:id="userPass" layoutX="42.0" layoutY="170.0" prefHeight="29.0" prefWidth="230.0" promptText="Pass" text="mycities" />
-                  <Button fx:id="access" layoutX="50.0" layoutY="237.0" mnemonicParsing="false" onAction="#memorize" prefHeight="28.0" prefWidth="202.0" text="Entrer" />
+                  <TextField fx:id="info" editable="false" layoutX="225.0" layoutY="140.0" mouseTransparent="true" prefHeight="24.0" prefWidth="289.0" />
+                  <TextField fx:id="userLogin" layoutX="251.0" layoutY="265.0" prefHeight="26.0" prefWidth="237.0" promptText="login" text="utilisateur" />
+                  <PasswordField fx:id="userPass" layoutX="254.0" layoutY="351.0" prefHeight="29.0" prefWidth="230.0" promptText="Pass" text="mycities" />
+                  <Button fx:id="access" layoutX="268.0" layoutY="477.0" mnemonicParsing="false" onAction="#memorize" prefHeight="28.0" prefWidth="202.0" text="Entrer" />
                </children>
             </AnchorPane>
          </center>
          <right>
-            <AnchorPane prefHeight="339.0" prefWidth="144.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="339.0" prefWidth="144.0" BorderPane.alignment="CENTER" />
          </right>
          <bottom>
-            <AnchorPane prefHeight="26.0" prefWidth="600.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER" />
+            <AnchorPane prefHeight="25.0" prefWidth="1024.0" BorderPane.alignment="CENTER" />
          </bottom>
          <BorderPane.margin>
             <Insets top="20.0" />
