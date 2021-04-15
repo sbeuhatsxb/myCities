@@ -5,6 +5,7 @@ import sample.Main;
 import entities.User;
 import model.ObjectProvider;
 import javafx.event.ActionEvent;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,6 +30,7 @@ private Button access;
 private TextField info;
 
 @FXML
+
 void memorize(ActionEvent event) {
 	String myLogin,myPass;
 	myLogin= userLogin.getText();
@@ -43,8 +45,9 @@ void memorize(ActionEvent event) {
 			
 		
 		
-	    if(myPass == user.getPassword()){
+		if(myPass.equals(user.getPassword())){
 	        //TODO Alors je suis conencté
+	    	info.setText("class");
 	    } else {
 	        //TODO ALERT mot de passe incorrect
 	    	info.setText("le mot de passe incorrect");
@@ -56,6 +59,7 @@ void memorize(ActionEvent event) {
 	
 		
 }
+
 
 
 	

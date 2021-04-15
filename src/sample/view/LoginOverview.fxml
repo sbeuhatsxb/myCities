@@ -19,8 +19,8 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="info" editable="false" layoutX="81.0" layoutY="35.0" mouseTransparent="true" />
-                  <TextField fx:id="userLogin" layoutX="32.0" layoutY="109.0" prefHeight="26.0" prefWidth="237.0" promptText="login" />
-                  <PasswordField fx:id="userPass" layoutX="42.0" layoutY="170.0" prefHeight="29.0" prefWidth="230.0" promptText="Pass" />
+                  <TextField fx:id="userLogin" layoutX="32.0" layoutY="109.0" prefHeight="26.0" prefWidth="237.0" promptText="login" text="magomed" />
+                  <PasswordField fx:id="userPass" layoutX="42.0" layoutY="170.0" prefHeight="29.0" prefWidth="230.0" promptText="Pass" text="mycities" />
                   <Button fx:id="access" layoutX="50.0" layoutY="237.0" mnemonicParsing="false" onAction="#memorize" prefHeight="28.0" prefWidth="202.0" text="Entrer" />
                </children>
             </AnchorPane>
