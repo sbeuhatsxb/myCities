@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="resources.BuildingDetail"
-            prefHeight="768.0" prefWidth="1024.0">
-
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.BuildingDetail">
+   <children>
+      <BorderPane prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+            <ImageView fx:id="fxImage" fitHeight="360.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+            <GridPane prefHeight="443.0" prefWidth="484.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="364.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Année" />
+                  <Label text="City" GridPane.rowIndex="1" />
+                  <Label text="Architecte" GridPane.rowIndex="2" />
+                  <Label text="Style" GridPane.rowIndex="3" />
+                  <Label text="Type de batiment" GridPane.rowIndex="4" />
+                  <Label text="Matériaux" GridPane.rowIndex="5" />
+                  <Label text="Type de toiture" GridPane.rowIndex="6" />
+                  <Label text="Charpente" GridPane.rowIndex="7" />
+                  <TextField fx:id="fxYear" editable="false" mouseTransparent="true" GridPane.columnIndex="1" />
+                  <TextField fx:id="fxCity" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="fxArchitect" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="fxStyle" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="fxType" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="fxMaterial" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="fxRoofType" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="fxFrame" editable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="fxCountry" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label text="Pays" GridPane.rowIndex="8" />
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" top="200.0" />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets left="10.0" right="10.0" />
+               </opaqueInsets>
+            </GridPane>
+         </center>
+         <top>
+            <TextField fx:id="fxName" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </top>
+         <bottom>
+            <TextArea fx:id="fxDescription" editable="false" maxWidth="1024.0" minWidth="1024.0" prefHeight="200.0" prefWidth="1024.0" wrapText="true" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </children>
 </AnchorPane>
