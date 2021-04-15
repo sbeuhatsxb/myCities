@@ -1,27 +1,32 @@
 package resources;
 
-import entities.Building;
-import entities.City;
-import entities.User;
+import entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ObjectProvider;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CityBuildingList {
+    public ChoiceBox typeFilter;
+    public ChoiceBox styleFilter;
+    public Button showSelectedCityBtn;
     ObjectProvider objectProvider = new ObjectProvider();
-    ObservableList list = FXCollections.observableArrayList();
+    public ObservableList<Object> list = FXCollections.observableArrayList();
+    public ObservableList<Object> styleObs = FXCollections.observableArrayList();
+    public ObservableList<Object> typeObs = FXCollections.observableArrayList();
     public ChoiceBox displayBuildingListChoiceBox;
     City city;
     User user;
@@ -49,18 +54,85 @@ public class CityBuildingList {
         }
     }
 
+    @FXML
+    private void onClickBuildingList(){
+        if(styleFilter.getValue() != null && typeFilter.getValue() != null){
+            List<Object> buildings;
+            displayBuildingListChoiceBox.getSelectionModel().clearSelection();
+            displayBuildingListChoiceBox.getItems().clear();
+            buildings = objectProvider.getBuildingsByCity(city);
+            list.removeAll(list);
+            List<String> buildingsList = new ArrayList<>();
+            for(int i = 0; i < buildings.size() ; i++){
+                Building building = (Building) buildings.get(i);
+                if(building.getType().getLabel().equals(typeFilter.getValue()) && building.getStyle().getLabel().equals(styleFilter.getValue())){
+                    buildingsList.add(building.getName());
+                    continue;
+                }
+            }
+            list.addAll(buildingsList);
+            displayBuildingListChoiceBox.getItems().addAll(list);
+        } else if(styleFilter.getValue() != null || typeFilter.getValue() != null){
+            List<Object> buildings;
+            displayBuildingListChoiceBox.getSelectionModel().clearSelection();
+            displayBuildingListChoiceBox.getItems().clear();
+            buildings = objectProvider.getBuildingsByCity(city);
+            list.removeAll(list);
+            List<String> buildingsList = new ArrayList<>();
+            for(int i = 0; i < buildings.size() ; i++){
+                Building building = (Building) buildings.get(i);
+                if(building.getType().getLabel().equals(typeFilter.getValue())){
+                    buildingsList.add(building.getName());
+                    continue;
+                }
+                if(building.getStyle().getLabel().equals(styleFilter.getValue())){
+                    buildingsList.add(building.getName());
+                    continue;
+                }
+            }
+            list.addAll(buildingsList);
+            displayBuildingListChoiceBox.getItems().addAll(list);
+        };
+        if(displayBuildingListChoiceBox.getItems().size() == 0){
+            text.setText("Vos critères n'ont renvoyé aucun résultat");
+        };
+    }
+
     private void loadData(){
-        List buildings = objectProvider.getBuildingsByCity(city);
 
+        List<Object> types = objectProvider.getAllTypes();
+        List<Object> styles = objectProvider.getAllStyles();
+
+        List<Object> buildings = objectProvider.getBuildingsByCity(city);
         list.removeAll(list);
-
-        HashSet<String> buildingsList = new HashSet<>();
+        List<String> buildingsList = new ArrayList<>();
         for(int i = 0; i < buildings.size() ; i++){
             Building building = (Building) buildings.get(i);
             buildingsList.add(building.getName());
         }
         list.addAll(buildingsList);
         displayBuildingListChoiceBox.getItems().addAll(list);
+
+        typeObs.removeAll(typeObs);
+        List<String> typesList = new ArrayList<>();
+        typesList.add("");
+        for(int i = 0; i < types.size() ; i++){
+            Type type = (Type) types.get(i);
+            typesList.add(type.getLabel());
+        }
+        typeObs.addAll(typesList);
+        typeFilter.getItems().addAll(typeObs);
+
+        styleObs.removeAll(styleObs);
+        List<String> stylesList = new ArrayList<>();
+        stylesList.add("");
+        for(int i = 0; i < styles.size() ; i++){
+            Style style = (Style) styles.get(i);
+            stylesList.add(style.getLabel());
+        }
+        styleObs.addAll(stylesList);
+        styleFilter.getItems().addAll(styleObs);
+
     }
 
     public void changeSceneToBuildingDetailView(ActionEvent actionEvent) {
