@@ -1,16 +1,15 @@
 package sample;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.DataHandler;
 import resources.Env;
+
+import java.io.IOException;
 
 public class Main extends Application implements Env {
     private DataHandler database;
@@ -24,13 +23,13 @@ public class Main extends Application implements Env {
         database.newDatabase();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Visit My Cities");
-//
+
         initRootLayout();
         showLoginOverview();
 
     }
 
-    
+
     /**
      * Initializes the root layout.
      */
@@ -67,7 +66,7 @@ public class Main extends Application implements Env {
         }
     }
 
-    
+
     public void showLoginOverview() {
         try {
             // Load person overview.
@@ -81,7 +80,7 @@ public class Main extends Application implements Env {
             e.printStackTrace();
         }
     }
-    
+
         /**
      * Returns the main stage.
      * @return
