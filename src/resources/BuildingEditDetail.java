@@ -16,7 +16,7 @@ import model.DbFeeder;
 import model.ObjectProvider;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuildingEditDetail {
@@ -50,7 +50,9 @@ public class BuildingEditDetail {
         fxStyle.setValue(building.getStyle().getLabel());
         fxType.setValue(building.getType().getLabel());
         fxMaterial.setValue(building.getMaterial().getLabel());
-        fxRoofType.setValue(building.getRoofType().getLabel());
+        if(building.getRoofType() != null){
+            fxRoofType.setValue(building.getRoofType().getLabel());
+        }
         fxFrame.setValue(building.getFrame().getLabel());
         fxCity.setValue(building.getCity().getLabel());
         fxArchitect.setValue(building.getArchitect().getLabel());
@@ -65,13 +67,13 @@ public class BuildingEditDetail {
         List cities = objectProvider.getAllCities();
         List architects = objectProvider.getAllArchitects();
 
-        HashSet<String> stylesStrings = new HashSet<>();
-        HashSet<String> roofTypeStrings = new HashSet<>();
-        HashSet<String> typesStrings = new HashSet<>();
-        HashSet<String> materialStrings = new HashSet<>();
-        HashSet<String> frameStrings = new HashSet<>();
-        HashSet<String> cityString = new HashSet<>();
-        HashSet<String> architectString = new HashSet<>();
+        List<String> stylesStrings = new ArrayList<>();
+        List<String> roofTypeStrings = new ArrayList<>();
+        List<String> typesStrings = new ArrayList<>();
+        List<String> materialStrings = new ArrayList<>();
+        List<String> frameStrings = new ArrayList<>();
+        List<String> cityString = new ArrayList<>();
+        List<String> architectString = new ArrayList<>();
 
         styleList.removeAll(styleList);
         for(int i = 0; i < styles.size() ; i++){
@@ -173,7 +175,7 @@ public class BuildingEditDetail {
 
     public void setArchitect(MouseEvent mouseEvent) {
         String selectedArchitect = (String) fxArchitect.getValue();
-        providedBuilding.setArchitect(objectProvider.getArchtitectByLabel(selectedArchitect));
+        providedBuilding.setArchitect(objectProvider.getArchitectByLabel(selectedArchitect));
     }
 
     public void setStyle(MouseEvent mouseEvent) {

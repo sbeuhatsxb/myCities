@@ -164,8 +164,6 @@ public class DataHandler implements Env {
         return null;
     }
 
-
-
     private static List<Object> objectTransformer(ResultSet rs, String table) throws SQLException {
         List<Object> objectList;
         objectList = new ArrayList();

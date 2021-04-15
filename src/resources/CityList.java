@@ -75,8 +75,11 @@ public class CityList {
         list.removeAll(list);
 
         List<Object> citiesGetter = objectProvider.getAllBuildings();
+
         HashSet<String> cities = new HashSet<>();
+
         String cityName;
+
         for (int i = 0; i < citiesGetter.size(); i++) {
             Building building = (Building) citiesGetter.get(i);
             cityName = building.getCity().getLabel();

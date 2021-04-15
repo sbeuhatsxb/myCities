@@ -92,7 +92,7 @@ public class LoginOverviewController {
 //            BuildingEditDetail truc =  loader.getController();
 //
 //            ObjectProvider objectProvider = new ObjectProvider();
-//            Building building = objectProvider.getBuildingById(1);
+//            Building building = objectProvider.getBuildingById(15);
 //            truc.initData(building);
 //            window.setScene(cityBuildingList);
 //

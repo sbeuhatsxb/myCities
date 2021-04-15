@@ -202,7 +202,7 @@ public class ObjectProvider {
         return null;
     }
 
-    public Architect getArchtitectByLabel(String label){
+    public Architect getArchitectByLabel(String label){
         database = new DataHandler();
         List<Object> types = database.getFilteredStringByColumn(Env.ARCHITECT, label, "label");
         if(types.size() > 0) {
