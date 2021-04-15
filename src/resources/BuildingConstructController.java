@@ -7,6 +7,7 @@ import java.util.List;
 
 import entities.Building;
 import entities.City;
+import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +30,7 @@ public class BuildingConstructController {
 	    private TextArea fxDesc;
 
 	    @FXML
-	    private ChoiceBox<?> fxCity;
+	    private ChoiceBox<String>  fxCity;
 
 	    @FXML
 	    private ChoiceBox<?> fxArchitect;
@@ -84,7 +85,13 @@ public class BuildingConstructController {
 
     }
     
-    private void loadCity() {
+    @FXML
+    public void initialize() {
+        loadData();
+       
+    }
+    
+    private void loadData() {
     	 list.removeAll(list);
 
          List<Object> citiesGetter = objectProvider.getAllBuildings();
