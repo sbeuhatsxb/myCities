@@ -1,6 +1,6 @@
 package resources;
 
-import entities.City;
+import entities.Building;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +19,7 @@ import model.ObjectProvider;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,7 +34,7 @@ public class CityList implements Initializable {
     String selectedCity;
 
     /**
-     * Show a new windows for selection
+     * Get
      * @param actionEvent
      */
     public void showSelectedCity(ActionEvent actionEvent) {
@@ -65,7 +66,6 @@ public class CityList implements Initializable {
 
             window.show();
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,13 +80,16 @@ public class CityList implements Initializable {
     private void loadData(){
         list.removeAll(list);
 
-        List<Object> citiesGetter = objectProvider.getAllCities();
+        List<Object> citiesGetter = objectProvider.getAllBuildings();
+        HashSet<String> cities = new HashSet<>();
+        String cityName;
         for(int i = 0; i < citiesGetter.size() ; i++){
-            City city = (City) citiesGetter.get(i);
-            String cityName = city.getLabel();
-            list.addAll(cityName);
+            Building city = (Building) citiesGetter.get(i);
+            cityName = city.getCity().getLabel();
+            cities.add(cityName);
         }
 
+        list.addAll(cities);
         displayCitesListChoiceBox.getItems().addAll(list);
     }
 }
