@@ -15,6 +15,7 @@ public class CityOverviewController {
      * The constructor is called before the initialize() method.
      */
     public CityOverviewController() {
+    
     }
 
     /**

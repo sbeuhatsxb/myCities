@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,10 +19,11 @@ import java.io.IOException;
 
 public class LoginOverviewController {
 
-    // Reference to the main application.
+    
+	// Reference to the main application.
     private Main main;
-    private TextField log, pass;
-
+     private  User currentUser;
+     
 
     @FXML
     private TextField userLogin;
@@ -46,15 +48,22 @@ public class LoginOverviewController {
         User user = objectProvider.getUserByLogin(myLogin);
        
         
+        
         if (user != null) {
             //TODO j'ai un utilisatuer qui a ce login
         	 String roleUser = user.getRole().getLabel();
 
             if (myPass.equals(user.getPassword())) {
                 //TODO Alors je suis conencté
-                startSession(event,roleUser);
+            	
+            	if(!roleUser.equals("admin")) {
+            		startUserSession(event,user);
+            	}else {
+            		startAdminSession(event);
+            	}
                 
-
+                
+               
 
             } else {
                 //TODO ALERT mot de passe incorrect
@@ -67,8 +76,18 @@ public class LoginOverviewController {
 
 
     }
+   
+  
+    
+   
 
-    /**
+    
+
+
+
+
+
+	/**
      * The constructor.
      * The constructor is called before the initialize() method.
      */
@@ -107,19 +126,20 @@ public class LoginOverviewController {
 
     }
 
-    public void startSession(ActionEvent event,String roleUser) {
+    public void startUserSession(ActionEvent event,User user) {
+    	
+    	
         try {
             FXMLLoader loader = new FXMLLoader();
-            if(roleUser.equals("user")) {
-            	 loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
-            }else {
-            	loader.setLocation(getClass().getResource("/resources/CityOverview.fxml"));
-            }
+            
+             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+            
            
             Parent viewParent = loader.load();
 
             Scene cityBuildingList = new Scene(viewParent);
-
+            CityList controleur =  loader.getController();
+            controleur.initData(user);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             window.setScene(cityBuildingList);
@@ -129,8 +149,29 @@ public class LoginOverviewController {
             e.printStackTrace();
         }
 
-
+        
     }
+    private void startAdminSession(ActionEvent event) {
+    	try {
+            FXMLLoader loader = new FXMLLoader();
+            
+             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+            
+           
+            Parent viewParent = loader.load();
+
+            Scene cityBuildingList = new Scene(viewParent);
+  
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(cityBuildingList);
+
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
 }
 
 

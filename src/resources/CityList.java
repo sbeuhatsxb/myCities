@@ -1,6 +1,7 @@
 package resources;
 
 import entities.Building;
+import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -23,7 +25,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CityList implements Initializable {
+public class CityList  {
     public TextField text;
     @FXML
     public Button showSelectedCityBtn;
@@ -32,11 +34,18 @@ public class CityList implements Initializable {
     private BorderPane rootLayout;
     ObjectProvider objectProvider = new ObjectProvider();
     String selectedCity;
+    User currentUser;
 
-    /**
-     * Get
-     * @param actionEvent
-     */
+   
+    @FXML
+    private Label welcom;
+
+    
+    public void initData(User user) {
+    	currentUser =user;
+    	loadData();
+    	 System.out.println(currentUser.getLogin());
+    }
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayCitesListChoiceBox.getValue();
         if(selected == null){
@@ -73,9 +82,11 @@ public class CityList implements Initializable {
     }
 
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadData();
-    }
+   /* public void initialize(URL url, ResourceBundle resourceBundle) {
+        currentUser =user;
+    	loadData();
+    	 System.out.println(currentUser.getLogin());
+    }*/
 
     private void loadData(){
         list.removeAll(list);
