@@ -85,6 +85,16 @@ public class ObjectProvider {
         return null;
     }
 
+    public Building getBuildingByName(String name){
+        database = new DataHandler();
+        List<Object> buildingList = database.getFilteredStringByColumn(Env.BUILDING, name, "name");
+        if(buildingList.size() > 0){
+            Building building = (Building) buildingList.get(0);
+            return building;
+        }
+        return null;
+    }
+
     public User getUserByLogin(String login){
         database = new DataHandler();
         List<Object> userList = database.getFilteredStringByColumn(Env.USER, login, "login");

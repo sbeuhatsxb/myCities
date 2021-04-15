@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.ObjectProvider;
 
@@ -29,7 +28,6 @@ public class CityList implements Initializable {
     public Button showSelectedCityBtn;
     public ChoiceBox displayCitesListChoiceBox;
     ObservableList list = FXCollections.observableArrayList();
-    private BorderPane rootLayout;
     ObjectProvider objectProvider = new ObjectProvider();
     String selectedCity;
 
