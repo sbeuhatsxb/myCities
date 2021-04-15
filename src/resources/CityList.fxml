@@ -31,9 +31,10 @@
             <ButtonBar prefHeight="40.0" prefWidth="90.0">
                <buttons>
                 <Button fx:id="showSelectedCityBtn" mnemonicParsing="false" onAction="#showSelectedCity" text="OK" textAlignment="CENTER" />
+                  <Button fx:id="fxFavorite" mnemonicParsing="false"  onAction="#showFavorites" text="Voir mes favoris" />
                </buttons>
                <padding>
-                  <Insets right="460.0" />
+                  <Insets right="375.0" />
                </padding>
             </ButtonBar>
          </children></VBox>

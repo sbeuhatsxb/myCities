@@ -87,4 +87,25 @@ public class FavList {
         }
 
     }
+
+    public void onClickReturnHome(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+
+            loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+
+            Parent viewParent = loader.load();
+
+            Scene cityBuildingList = new Scene(viewParent);
+            CityList controleur =  loader.getController();
+            controleur.initData(user);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(cityBuildingList);
+
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

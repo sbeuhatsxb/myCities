@@ -7,11 +7,16 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="resources.FavList"
-            prefHeight="1024.0" prefWidth="768.0">
+            prefHeight="768.0" prefWidth="1024.0">
     <children>
         <VBox prefHeight="200.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <TextField fx:id="text" editable="false" mouseTransparent="true" />
+                <Button fx:id="fxReturnHome" mnemonicParsing="false" onAction="#onClickReturnHome" text="Retour au choix des villes">
+                    <VBox.margin>
+                        <Insets left="60.0" top="80.0" />
+                    </VBox.margin>
+                </Button>
                 <Label text="Choisissez un bâtiment :">
                     <font>
                         <Font size="34.0" />

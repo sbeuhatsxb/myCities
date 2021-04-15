@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
-public class CityList  {
+public class CityList {
     public TextField text;
     @FXML
     public Button showSelectedCityBtn;
@@ -37,12 +37,13 @@ public class CityList  {
 
 
     public void initData(User user) {
-    	currentUser = user;
-    	loadData();
+        currentUser = user;
+        loadData();
     }
+
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayCitesListChoiceBox.getValue();
-        if(selected == null){
+        if (selected == null) {
             text.setText("Choisissez une ville");
         } else {
             selectedCity = selected;
@@ -63,7 +64,7 @@ public class CityList  {
             CityBuildingList controller = loader.getController();
             controller.initData(selectedCity, currentUser);
 
-            Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
             window.setScene(cityBuildingList);
 
@@ -75,13 +76,13 @@ public class CityList  {
 
     }
 
-    private void loadData(){
+    private void loadData() {
         list.removeAll(list);
 
         List<Object> citiesGetter = objectProvider.getAllBuildings();
         HashSet<String> cities = new HashSet<>();
         String cityName;
-        for(int i = 0; i < citiesGetter.size() ; i++){
+        for (int i = 0; i < citiesGetter.size(); i++) {
             Building city = (Building) citiesGetter.get(i);
             cityName = city.getCity().getLabel();
             cities.add(cityName);
@@ -90,4 +91,29 @@ public class CityList  {
         list.addAll(cities);
         displayCitesListChoiceBox.getItems().addAll(list);
     }
+
+    public void showFavorites(ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/resources/FavList.fxml"));
+            Parent viewParent = loader.load();
+
+            Scene favList = new Scene(viewParent);
+
+            //Access controller
+            FavList controller = loader.getController();
+            controller.initData(currentUser);
+
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(favList);
+
+            window.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

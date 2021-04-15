@@ -2,6 +2,7 @@ package resources;
 
 import entities.Building;
 import entities.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -133,5 +134,26 @@ public class BuildingDetail {
         } else {
             idAddFavText.setText("Ce bâtiment existe déjà dans vos favoris");
         };
+    }
+
+    public void onClickReturnHome(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+
+            loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+
+            Parent viewParent = loader.load();
+
+            Scene cityBuildingList = new Scene(viewParent);
+            CityList controleur =  loader.getController();
+            controleur.initData(user);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            window.setScene(cityBuildingList);
+
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

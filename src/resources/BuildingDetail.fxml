@@ -75,6 +75,7 @@
             <TextArea fx:id="fxDescription" editable="false" maxWidth="1024.0" minWidth="1024.0" prefHeight="200.0" prefWidth="1024.0" wrapText="true" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
+      <Button fx:id="fxReturnHome" mnemonicParsing="false" onAction="#onClickReturnHome" text="Retour au choix des villes" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="80.0" />
       <Button fx:id="fxSeeFav" mnemonicParsing="false" onAction="#onClickedSeeFav" text="Voir favoris" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="80.0" />
       <Button fx:id="fxAddFav" mnemonicParsing="false" onAction="#onClickedAddToFav" text="Ajouter aux favoris" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="80.0" />
       <Label fx:id="idAddFavText" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" textAlignment="CENTER" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="45.0" />
