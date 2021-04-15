@@ -44,14 +44,16 @@ public class LoginOverviewController {
         ObjectProvider objectProvider = new ObjectProvider();
 
         User user = objectProvider.getUserByLogin(myLogin);
+       
+        
         if (user != null) {
             //TODO j'ai un utilisatuer qui a ce login
-
+        	 String roleUser = user.getRole().getLabel();
 
             if (myPass.equals(user.getPassword())) {
                 //TODO Alors je suis conencté
-                startSession(event);
-                info.setText("class");
+                startSession(event,roleUser);
+                
 
 
             } else {
@@ -105,10 +107,15 @@ public class LoginOverviewController {
 
     }
 
-    public void startSession(ActionEvent event) {
+    public void startSession(ActionEvent event,String roleUser) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+            if(roleUser.equals("user")) {
+            	 loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+            }else {
+            	loader.setLocation(getClass().getResource("/resources/CityOverview.fxml"));
+            }
+           
             Parent viewParent = loader.load();
 
             Scene cityBuildingList = new Scene(viewParent);
