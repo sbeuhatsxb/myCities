@@ -32,9 +32,7 @@ public class CityList {
     User currentUser;
 
 
-    @FXML
-    private Label welcom;
-
+   
 
     public void initData(User user) {
         currentUser = user;

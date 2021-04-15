@@ -2,8 +2,13 @@ package resources;
 
 
 
+import java.util.HashSet;
+import java.util.List;
+
 import entities.Building;
 import entities.City;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +22,9 @@ import model.ObjectProvider;
 public class BuildingConstructController {
 	private Building building  = new Building();
 	private ObjectProvider op = new ObjectProvider();
-
+	ObservableList list = FXCollections.observableArrayList();
+    ObjectProvider objectProvider = new ObjectProvider();
+    String selectedCity;
 	  @FXML
 	    private TextArea fxDesc;
 
@@ -75,6 +82,22 @@ public class BuildingConstructController {
     	DbFeeder dbfeeder = new DbFeeder(); 
     	dbfeeder.addNewBuilding(building);*/
 
+    }
+    
+    private void loadCity() {
+        list.removeAll(list);
+
+        List<Object> citiesGetter = objectProvider.getAllBuildings();
+        HashSet<String> cities = new HashSet<>();
+        String cityName;
+        for (int i = 0; i < citiesGetter.size(); i++) {
+            Building city = (Building) citiesGetter.get(i);
+            cityName = city.getCity().getLabel();
+            cities.add(cityName);
+        }
+
+        list.addAll(cities);
+        fxCity.getItems().addAll(list);
     }
 	    
 	  
