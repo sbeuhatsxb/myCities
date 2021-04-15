@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.LoginOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.LoginOverviewController">
    <children>
       <BorderPane layoutY="-3.0" prefHeight="406.0" prefWidth="600.0">
          <top>
@@ -31,6 +29,12 @@
          <bottom>
             <AnchorPane prefHeight="26.0" prefWidth="600.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER" />
          </bottom>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
       </BorderPane>
    </children>
+   <BorderPane.margin>
+      <Insets />
+   </BorderPane.margin>
 </AnchorPane>
