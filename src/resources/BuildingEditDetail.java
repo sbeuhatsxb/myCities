@@ -10,7 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.DbFeeder;
 import model.ObjectProvider;
 
 import java.io.IOException;
@@ -38,6 +40,21 @@ public class BuildingEditDetail {
     ObservableList architextList = FXCollections.observableArrayList();
 
     ObjectProvider objectProvider = new ObjectProvider();
+    Building providedBuilding;
+
+    public void initData(Building building){
+        providedBuilding = building;
+        fxName.setText(building.getName());
+        fxYear.setText(String.valueOf(building.getYear()));
+        fxImage.setText(building.getImage());
+        fxStyle.setValue(building.getStyle().getLabel());
+        fxType.setValue(building.getType().getLabel());
+        fxMaterial.setValue(building.getMaterial().getLabel());
+        fxRoofType.setValue(building.getRoofType().getLabel());
+        fxFrame.setValue(building.getFrame().getLabel());
+        fxCity.setValue(building.getCity().getLabel());
+        fxArchitect.setValue(building.getArchitect().getLabel());
+    }
 
     public void loadData(){
         List styles = objectProvider.getAllStyles();
@@ -134,5 +151,58 @@ public class BuildingEditDetail {
     }
 
     public void save(ActionEvent actionEvent) {
+        DbFeeder dbFeeder = new DbFeeder();
+        dbFeeder.addNewBuilding(providedBuilding);
+        dbFeeder.deleteBuilding(providedBuilding);
+    }
+
+    public void setYear(ActionEvent actionEvent) {
+        String selectedYear = (String) fxYear.getText();
+        providedBuilding.setYear(Integer.valueOf(selectedYear));
+    }
+
+    public void setName(ActionEvent actionEvent) {
+        String selectedName = (String) fxName.getText();
+        providedBuilding.setName(selectedName);
+    }
+
+    public void setImage(ActionEvent actionEvent) {
+        String selectedImage = (String) fxImage.getText();
+        providedBuilding.setImage(selectedImage);
+    }
+
+    public void setArchitect(MouseEvent mouseEvent) {
+        String selectedArchitect = (String) fxArchitect.getValue();
+        providedBuilding.setArchitect(objectProvider.getArchtitectByLabel(selectedArchitect));
+    }
+
+    public void setStyle(MouseEvent mouseEvent) {
+        String selectedStyle = (String) fxStyle.getValue();
+        providedBuilding.setStyle(objectProvider.getStyleByLabel(selectedStyle));
+    }
+
+    public void setType(MouseEvent mouseEvent) {
+        String selectedType = (String) fxStyle.getValue();
+        providedBuilding.setType(objectProvider.getTypeByLabel(selectedType));
+    }
+
+    public void setMaterial(MouseEvent mouseEvent) {
+        String selectedMaterial = (String) fxMaterial.getValue();
+        providedBuilding.setMaterial(objectProvider.getMaterialByLabel(selectedMaterial));
+    }
+
+    public void setRoofType(MouseEvent mouseEvent) {
+        String selectedRoofType = (String) fxRoofType.getValue();
+        providedBuilding.setRoofType(objectProvider.getRoofTypeByLabel(selectedRoofType));
+    }
+
+    public void setFrame(MouseEvent mouseEvent) {
+        String selectedFrame = (String) fxFrame.getValue();
+        providedBuilding.setFrame(objectProvider.getFrameByLabel(selectedFrame));
+    }
+
+    public void setCity(MouseEvent mouseEvent) {
+        String selectedCity = (String) fxCity.getValue();
+        providedBuilding.setCity(objectProvider.getCityByName(selectedCity));
     }
 }

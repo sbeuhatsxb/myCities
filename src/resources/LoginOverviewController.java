@@ -1,5 +1,6 @@
 package resources;
 
+import entities.Building;
 import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -89,7 +90,11 @@ public class LoginOverviewController {
             BuildingEditDetail controleur =  loader.getController();
             controleur.loadData();
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            BuildingEditDetail truc =  loader.getController();
 
+            ObjectProvider objectProvider = new ObjectProvider();
+            Building building = objectProvider.getBuildingById(1);
+            truc.initData(building);
             window.setScene(cityBuildingList);
 
             window.show();

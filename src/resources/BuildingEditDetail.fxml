@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.BuildingEditDetail">
    <children>
-      <BorderPane prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane onMouseClicked="#setStyle" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <right>
          </right>
          <center>
@@ -46,16 +46,16 @@
                   <Label text="Type de toiture" GridPane.rowIndex="7" />
                   <Label text="Charpente" GridPane.rowIndex="8" />
                   <Label text="Ville" GridPane.rowIndex="9" />
-                   <TextField fx:id="fxYear" GridPane.columnIndex="1" />
-                   <TextField fx:id="fxName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                   <TextField fx:id="fxImage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ChoiceBox fx:id="fxArchitect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ChoiceBox fx:id="fxStyle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ChoiceBox fx:id="fxType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ChoiceBox fx:id="fxMaterial" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ChoiceBox fx:id="fxRoofType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ChoiceBox fx:id="fxFrame" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <ChoiceBox fx:id="fxCity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                   <TextField fx:id="fxYear" onContextMenuRequested="#setYear" GridPane.columnIndex="1" />
+                   <TextField fx:id="fxName" onContextMenuRequested="#setName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                   <TextField fx:id="fxImage" onContextMenuRequested="#setImage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ChoiceBox fx:id="fxArchitect" onContextMenuRequested="#setArchitect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ChoiceBox fx:id="fxStyle" onContextMenuRequested="#setStyle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="fxType" onDragDetected="#setType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ChoiceBox fx:id="fxMaterial" onContextMenuRequested="#setMaterial" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ChoiceBox fx:id="fxRoofType" onContextMenuRequested="#setRoofType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="fxFrame" onContextMenuRequested="#setFrame" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ChoiceBox fx:id="fxCity" onContextMenuRequested="#setCity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
                <BorderPane.margin>
                   <Insets left="10.0" right="10.0" top="200.0" />

@@ -12,6 +12,11 @@ public class DbFeeder {
         database.insertNewBuilding(building);
     }
 
+    public void deleteBuilding(Building building){
+        database = new DataHandler();
+        database.deleteBuilding(building);
+    }
+
     public boolean addToFavlist(Building building, User user){
         database = new DataHandler();
         if(!database.checkIfFavlistIsAlreadySet(building.getId(), user.getId())){
