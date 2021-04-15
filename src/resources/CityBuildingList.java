@@ -41,7 +41,7 @@ public class CityBuildingList {
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayBuildingListChoiceBox.getValue();
         if(selected == null){
-            text.setText("Choisissez un bâtiment");
+            text.setText("Veuillez choisir un bâtiment");
         } else {
             text.setText(selected);
             building = objectProvider.getBuildingByName(selected);

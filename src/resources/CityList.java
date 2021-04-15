@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.ObjectProvider;
@@ -32,7 +31,6 @@ public class CityList {
     User currentUser;
 
 
-   
 
     public void initData(User user) {
         currentUser = user;
@@ -43,7 +41,7 @@ public class CityList {
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayCitesListChoiceBox.getValue();
         if (selected == null) {
-            text.setText("Choisissez une ville");
+            text.setText("Veuillez choisir une ville");
         } else {
             selectedCity = selected;
             changeSceneVToBuildingsListView(actionEvent);
@@ -79,11 +77,14 @@ public class CityList {
         list.removeAll(list);
 
         List<Object> citiesGetter = objectProvider.getAllBuildings();
+
         HashSet<String> cities = new HashSet<>();
+
         String cityName;
+
         for (int i = 0; i < citiesGetter.size(); i++) {
-            Building city = (Building) citiesGetter.get(i);
-            cityName = city.getCity().getLabel();
+            Building building = (Building) citiesGetter.get(i);
+            cityName = building.getCity().getLabel();
             cities.add(cityName);
         }
 
@@ -114,5 +115,5 @@ public class CityList {
             e.printStackTrace();
         }
     }
-    
+
 }

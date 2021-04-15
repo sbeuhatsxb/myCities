@@ -62,12 +62,6 @@ public class ObjectProvider {
         return buildings;
     }
 
-    public List<Object> getAllCities(){
-        database = new DataHandler();
-        List<Object> cities = database.getAll(Env.CITY);
-        return cities;
-    }
-
     public City getCityById(int cityId){
         database = new DataHandler();
         List<Object> cities = database.getFilteredIntByColumn(Env.CITY, cityId, "id_city");
@@ -134,5 +128,107 @@ public class ObjectProvider {
         List<Object> buildings = database.getFilteredIntByColumn(Env.BUILDING, typeId, "id_type");
 
         return buildings;
+    }
+
+    public List<Object> getAllTypes(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.TYPE);
+        return buildings;
+    }
+
+    public List<Object> getAllStyles(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.STYLE);
+        return buildings;
+    }
+
+    public List<Object> getAllRoofTypes(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.ROOF_TYPE);
+        return buildings;
+    }
+
+    public List<Object> getAllMaterial(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.MATERIAL);
+        return buildings;
+    }
+
+    public List<Object> getAllFrames(){
+        database = new DataHandler();
+        List<Object> buildings = database.getAll(Env.FRAME);
+        return buildings;
+    }
+
+    public List<Object> getAllCities(){
+        database = new DataHandler();
+        List<Object> cities = database.getAll(Env.CITY);
+        return cities;
+    }
+
+    public List<Object> getAllArchitects(){
+        database = new DataHandler();
+        List<Object> cities = database.getAll(Env.ARCHITECT);
+        return cities;
+    }
+
+    public Style getStyleByLabel(String label){
+        database = new DataHandler();
+        List<Object> types = database.getFilteredStringByColumn(Env.STYLE, label, "label");
+        if(types.size() > 0) {
+            Style style = (Style) types.get(0);
+            return style;
+        }
+        return null;
+    }
+
+    public Type getTypeByLabel(String label){
+        database = new DataHandler();
+        List<Object> types = database.getFilteredStringByColumn(Env.TYPE, label, "label");
+        if(types.size() > 0) {
+            Type type = (Type) types.get(0);
+            return type;
+        }
+        return null;
+    }
+
+    public RoofType getRoofTypeByLabel(String label){
+        database = new DataHandler();
+        List<Object> types = database.getFilteredStringByColumn(Env.ROOF_TYPE, label, "label");
+        if(types.size() > 0) {
+            RoofType type = (RoofType) types.get(0);
+            return type;
+        }
+        return null;
+    }
+
+    public Architect getArchitectByLabel(String label){
+        database = new DataHandler();
+        List<Object> types = database.getFilteredStringByColumn(Env.ARCHITECT, label, "label");
+        if(types.size() > 0) {
+            Architect type = (Architect) types.get(0);
+            return type;
+        }
+        return null;
+    }
+
+    public Material getMaterialByLabel(String label){
+        database = new DataHandler();
+        List<Object> types = database.getFilteredStringByColumn(Env.MATERIAL, label, "label");
+        if(types.size() > 0) {
+            Material type = (Material) types.get(0);
+            return type;
+        }
+        return null;
+    }
+
+    public Frame getFrameByLabel(String label){
+        database = new DataHandler();
+        List<Object> types = database.getFilteredStringByColumn(Env.MATERIAL, label, "label");
+        if(types.size() > 0) {
+            Frame type = (Frame) types.get(0);
+            return type;
+        }
+        return null;
     }
 }

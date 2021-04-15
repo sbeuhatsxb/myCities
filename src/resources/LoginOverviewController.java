@@ -158,7 +158,33 @@ public class LoginOverviewController {
             e.printStackTrace();
         }
 
+
         
+
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//
+//            loader.setLocation(getClass().getResource("/resources/BuildingEditDetail.fxml"));
+//
+//            Parent viewParent = loader.load();
+//
+//            Scene cityBuildingList = new Scene(viewParent);
+//            BuildingEditDetail controleur =  loader.getController();
+//            controleur.loadData();
+//            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            BuildingEditDetail truc =  loader.getController();
+//
+//            ObjectProvider objectProvider = new ObjectProvider();
+//            Building building = objectProvider.getBuildingById(15);
+//            truc.initData(building);
+//            window.setScene(cityBuildingList);
+//
+//            window.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
     }
     private void startAdminSession(ActionEvent event) {
     	try {

@@ -61,6 +61,19 @@ public class DataHandler implements Env {
         }
     }
 
+    public static void deleteBuilding(Building building) {
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            String query = "DELETE FROM building WHERE id_building = "+building.getId()+";";
+
+            ResultSet rs = stmt.executeQuery(query);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     public static List<Object> getAll(String table) {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {

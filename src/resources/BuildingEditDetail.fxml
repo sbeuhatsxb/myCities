@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.BuildingEditDetail">
+   <children>
+      <BorderPane onMouseClicked="#setStyle" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <right>
+         </right>
+         <center>
+            <GridPane prefHeight="443.0" prefWidth="484.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="364.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+              </rowConstraints>
+               <children>
+                  <Label text="Année" />
+                  <Label text="Nom" GridPane.rowIndex="1" />
+                  <Label text="Nom de l'image" GridPane.rowIndex="2" />
+                  <Label text="Architecte" GridPane.rowIndex="3" />
+                  <Label text="Style" GridPane.rowIndex="4" />
+                  <Label text="Type de batiment" GridPane.rowIndex="5" />
+                  <Label text="Matériaux" GridPane.rowIndex="6" />
+                  <Label text="Type de toiture" GridPane.rowIndex="7" />
+                  <Label text="Charpente" GridPane.rowIndex="8" />
+                  <Label text="Ville" GridPane.rowIndex="9" />
+                   <TextField fx:id="fxYear" onContextMenuRequested="#setYear" GridPane.columnIndex="1" />
+                   <TextField fx:id="fxName" onContextMenuRequested="#setName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                   <TextField fx:id="fxImage" onContextMenuRequested="#setImage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ChoiceBox fx:id="fxArchitect" onContextMenuRequested="#setArchitect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ChoiceBox fx:id="fxStyle" onContextMenuRequested="#setStyle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="fxType" onDragDetected="#setType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ChoiceBox fx:id="fxMaterial" onContextMenuRequested="#setMaterial" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ChoiceBox fx:id="fxRoofType" onContextMenuRequested="#setRoofType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="fxFrame" onContextMenuRequested="#setFrame" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ChoiceBox fx:id="fxCity" onContextMenuRequested="#setCity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" top="200.0" />
+               </BorderPane.margin>
+               <opaqueInsets>
+                  <Insets left="10.0" right="10.0" />
+               </opaqueInsets>
+            </GridPane>
+         </center>
+         <top>
+         </top>
+         <bottom>
+            <TextArea fx:id="fxDescription" editable="true" maxWidth="1024.0" minWidth="1024.0" prefHeight="200.0" prefWidth="1024.0" wrapText="true" BorderPane.alignment="CENTER" />
+         </bottom>
+         <right>
+            <Label text="Description longue ci dessous" BorderPane.alignment="BOTTOM_CENTER">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </Label>
+         </right>
+      </BorderPane>
+      <Button fx:id="fxReturnHome" mnemonicParsing="false" onAction="#onClickReturnHome" text="Retour à la connexion" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="80.0" />
+      <Button fx:id="fxSeeFav" mnemonicParsing="false" onAction="#save" text="Sauvegarder" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="80.0" />
+      <Label fx:id="idAddFavText" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" textAlignment="CENTER" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="45.0" />
+   </children>
+</AnchorPane>

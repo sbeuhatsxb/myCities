@@ -23,7 +23,14 @@ import model.ObjectProvider;
 public class BuildingConstructController {
 	private Building building  = new Building();
 	private ObjectProvider op = new ObjectProvider();
-	ObservableList list = FXCollections.observableArrayList();
+	ObservableList cityList = FXCollections.observableArrayList();
+	ObservableList architectList = FXCollections.observableArrayList();
+	ObservableList typeList = FXCollections.observableArrayList();
+	ObservableList materialList = FXCollections.observableArrayList();
+	ObservableList toitList = FXCollections.observableArrayList();
+	ObservableList frameList = FXCollections.observableArrayList();
+	ObservableList styleList = FXCollections.observableArrayList();
+	
     ObjectProvider objectProvider = new ObjectProvider();
     String selectedCity;
 	  @FXML
@@ -92,7 +99,9 @@ public class BuildingConstructController {
     }
     
     private void loadData() {
-    	 list.removeAll(list);
+    	 cityList.removeAll(cityList);
+    	 
+    	 
 
          List<Object> citiesGetter = objectProvider.getAllBuildings();
          HashSet<String> cities = new HashSet<>();
@@ -103,10 +112,42 @@ public class BuildingConstructController {
              cities.add(cityName);
          }
 
-         list.addAll(cities);
-         fxCity.getItems().addAll(list);
+         cityList.addAll(cities);
+         fxCity.getItems().addAll(cityList);
+         
+         
+         	
+         architectList.removeAll(architectList);
+    	
+         List<Object> architectGetter = objectProvider.getAllBuildings();
+         HashSet<String> architects = new HashSet<>();
+         String architectName;
+         for (int i = 0; i < architectGetter.size(); i++) {
+             Building architect = (Building) architectGetter.get(i);
+             architectName = architect.getArchitect().getLabel();
+             architects.add(architectName);
+         }
+
+         architectList.addAll(architects);
+         fxArchitect.getItems().addAll(architectList);
+         
+         typeList.removeAll(typeList);
+     	
+         List<Object> typeGetter = objectProvider.getAllBuildings();
+         HashSet<String> types = new HashSet<>();
+         String typeName;
+         for (int i = 0; i < architectGetter.size(); i++) {
+             Building architect = (Building) architectGetter.get(i);
+             architectName = architect.getArchitect().getLabel();
+             architects.add(architectName);
+         }
+
+         architectList.addAll(architects);
+         fxArchitect.getItems().addAll(architectList);
     }
 	    
+    
+    
 	  
 	    
 	   
