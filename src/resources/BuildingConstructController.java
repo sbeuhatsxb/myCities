@@ -1,6 +1,6 @@
 package resources;
 
-import java.awt.TextArea;
+
 
 import entities.Building;
 import entities.City;
@@ -8,53 +8,54 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import model.DbFeeder;
 import model.ObjectProvider;
 
-public class BiildingConstructController {
+public class BuildingConstructController {
 	private Building building  = new Building();
 	private ObjectProvider op = new ObjectProvider();
 
-	@FXML
-    private TextArea fxDesc;
+	  @FXML
+	    private TextArea fxDesc;
 
-    @FXML
-    private ChoiceBox<?> fxCity;
+	    @FXML
+	    private ChoiceBox<?> fxCity;
 
-    @FXML
-    private ChoiceBox<?> fxArchitect;
+	    @FXML
+	    private ChoiceBox<?> fxArchitect;
 
-    @FXML
-    private ChoiceBox<?> fxType;
+	    @FXML
+	    private ChoiceBox<?> fxType;
 
-    @FXML
-    private ChoiceBox<?> fxMaterial;
+	    @FXML
+	    private ChoiceBox<?> fxMaterial;
 
-    @FXML
-    private ChoiceBox<?> fxToit;
+	    @FXML
+	    private ChoiceBox<?> fxToit;
 
-    @FXML
-    private ChoiceBox<?> fxFrame;
+	    @FXML
+	    private ChoiceBox<?> fxFrame;
 
-    @FXML
-    private ChoiceBox<?> fxStyle;
+	    @FXML
+	    private ChoiceBox<?> fxStyle;
 
-    @FXML
-    private TextField fxName;
+	    @FXML
+	    private TextField fxName;
 
-    @FXML
-    private TextField fxYear;
+	    @FXML
+	    private TextField fxYear;
 
-    @FXML
-    private TextField fxWindows;
+	    @FXML
+	    private TextField fxWindows;
 
-    @FXML
-    private ImageView fxImg;
+	    @FXML
+	    private ImageView fxImg;
 
-    @FXML
-    private Button fxInsert;
+	    @FXML
+	    private Button fxInsert;
 
     @FXML
     void insertion(ActionEvent event) {

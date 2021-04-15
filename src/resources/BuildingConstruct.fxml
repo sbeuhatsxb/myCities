@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root fx:id="fxDesc" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="622.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.BiildingConstructController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.BuildingConstructController">
    <children>
       <GridPane layoutX="20.0" layoutY="21.0" prefHeight="228.0" prefWidth="252.0">
         <columnConstraints>
@@ -58,4 +58,4 @@
       <Label layoutX="420.0" layoutY="14.0" prefHeight="71.0" prefWidth="169.0" text="Creeer un nouveau Batiment" />
       <TextArea fx:id="fxDesc" layoutX="55.0" layoutY="261.0" prefHeight="118.0" prefWidth="376.0" />
    </children>
-</fx:root>
+</AnchorPane>
