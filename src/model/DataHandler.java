@@ -65,7 +65,7 @@ public class DataHandler implements Env {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
             String query = "DELETE FROM building WHERE id_building = "+building.getId()+";";
-
+            System.out.println("Building" + building.getId() + " deleted");
             ResultSet rs = stmt.executeQuery(query);
 
         } catch (SQLException e) {

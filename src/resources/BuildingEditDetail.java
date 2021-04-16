@@ -9,8 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.stage.Stage;
 import model.DbFeeder;
 import model.ObjectProvider;
@@ -31,6 +32,19 @@ public class BuildingEditDetail {
     public ChoiceBox fxRoofType;
     public ChoiceBox fxFrame;
     public ChoiceBox fxCity;
+
+    public String selectedYear;
+    public String selectedName;
+    public String selectedDescription;
+    public String selectedImage;
+    public String selectedArchitect;
+    public String selectedStyle;
+    public String selectedType;
+    public String selectedMaterial;
+    public String selectedRoofType;
+    public String selectedFrame;
+    public String selectedCity;
+    public TextArea fxDescription;
     ObservableList styleList = FXCollections.observableArrayList();
     ObservableList typeList = FXCollections.observableArrayList();
     ObservableList roofTypeList = FXCollections.observableArrayList();
@@ -47,6 +61,7 @@ public class BuildingEditDetail {
         fxName.setText(building.getName());
         fxYear.setText(String.valueOf(building.getYear()));
         fxImage.setText(building.getImage());
+        fxDescription.setText(building.getDescription());
         fxStyle.setValue(building.getStyle().getLabel());
         fxType.setValue(building.getType().getLabel());
         fxMaterial.setValue(building.getMaterial().getLabel());
@@ -131,6 +146,8 @@ public class BuildingEditDetail {
         }
         architextList.addAll(architectString);
         fxArchitect.getItems().addAll(architextList);
+
+
     }
 
     public void onClickReturnHome(ActionEvent actionEvent) {
@@ -154,57 +171,81 @@ public class BuildingEditDetail {
 
     public void save(ActionEvent actionEvent) {
         DbFeeder dbFeeder = new DbFeeder();
-        dbFeeder.addNewBuilding(providedBuilding);
+        Building newBuilding = new Building();
+
+        selectedYear = fxYear.getText();
+        selectedName = fxName.getText();
+        selectedImage =fxImage.getText();
+
+
+        selectedArchitect = (String) fxArchitect.getValue();
+        selectedStyle = (String) fxStyle.getValue();
+        selectedType = (String) fxType.getValue();
+        selectedMaterial = (String) fxMaterial.getValue();
+        selectedRoofType = (String) fxRoofType.getValue();
+        selectedFrame = (String) fxFrame.getValue();
+        selectedCity = (String) fxCity.getValue();
+        selectedDescription = fxDescription.getText();
+
+        newBuilding.setYear(Integer.valueOf(selectedYear));
+        newBuilding.setName(selectedName);
+        newBuilding.setImage(selectedImage);
+        newBuilding.setDescription(selectedDescription);
+        newBuilding.setArchitect(objectProvider.getArchitectByLabel(selectedArchitect));
+        newBuilding.setStyle(objectProvider.getStyleByLabel(selectedStyle));
+        newBuilding.setType(objectProvider.getTypeByLabel(selectedType));
+        newBuilding.setMaterial(objectProvider.getMaterialByLabel(selectedMaterial));
+        newBuilding.setRoofType(objectProvider.getRoofTypeByLabel(selectedRoofType));
+        newBuilding.setFrame(objectProvider.getFrameByLabel(selectedFrame));
+        newBuilding.setCity(objectProvider.getCityByName(selectedCity));
+
+
+        dbFeeder.addNewBuilding(newBuilding);
         dbFeeder.deleteBuilding(providedBuilding);
+
     }
 
     public void setYear(ActionEvent actionEvent) {
-        String selectedYear = (String) fxYear.getText();
-        providedBuilding.setYear(Integer.valueOf(selectedYear));
+        selectedYear = (String) fxYear.getText();
     }
 
     public void setName(ActionEvent actionEvent) {
-        String selectedName = (String) fxName.getText();
-        providedBuilding.setName(selectedName);
+        selectedName = (String) fxName.getText();
     }
 
     public void setImage(ActionEvent actionEvent) {
-        String selectedImage = (String) fxImage.getText();
-        providedBuilding.setImage(selectedImage);
+        selectedImage = (String) fxImage.getText();
     }
 
-    public void setArchitect(MouseEvent mouseEvent) {
-        String selectedArchitect = (String) fxArchitect.getValue();
-        providedBuilding.setArchitect(objectProvider.getArchitectByLabel(selectedArchitect));
+    public void setArchitect(ContextMenuEvent mouseEvent) {
+        selectedArchitect = (String) fxArchitect.getValue();
     }
 
-    public void setStyle(MouseEvent mouseEvent) {
-        String selectedStyle = (String) fxStyle.getValue();
-        providedBuilding.setStyle(objectProvider.getStyleByLabel(selectedStyle));
+    public void setStyle(ContextMenuEvent mouseEvent) {
+        selectedStyle = (String) fxStyle.getValue();
     }
 
-    public void setType(MouseEvent mouseEvent) {
-        String selectedType = (String) fxStyle.getValue();
-        providedBuilding.setType(objectProvider.getTypeByLabel(selectedType));
+    public void setType(ContextMenuEvent mouseEvent) {
+        selectedType = (String) fxStyle.getValue();
     }
 
-    public void setMaterial(MouseEvent mouseEvent) {
-        String selectedMaterial = (String) fxMaterial.getValue();
-        providedBuilding.setMaterial(objectProvider.getMaterialByLabel(selectedMaterial));
+    public void setMaterial(ContextMenuEvent mouseEvent) {
+        selectedMaterial = (String) fxMaterial.getValue();
     }
 
-    public void setRoofType(MouseEvent mouseEvent) {
-        String selectedRoofType = (String) fxRoofType.getValue();
-        providedBuilding.setRoofType(objectProvider.getRoofTypeByLabel(selectedRoofType));
+    public void setRoofType(ContextMenuEvent mouseEvent) {
+        selectedRoofType = (String) fxRoofType.getValue();
     }
 
-    public void setFrame(MouseEvent mouseEvent) {
-        String selectedFrame = (String) fxFrame.getValue();
-        providedBuilding.setFrame(objectProvider.getFrameByLabel(selectedFrame));
+    public void setFrame(ContextMenuEvent mouseEvent) {
+         selectedFrame = (String) fxFrame.getValue();
     }
 
-    public void setCity(MouseEvent mouseEvent) {
-        String selectedCity = (String) fxCity.getValue();
-        providedBuilding.setCity(objectProvider.getCityByName(selectedCity));
+    public void setCity(ContextMenuEvent mouseEvent) {
+         selectedCity = (String) fxCity.getValue();
+    }
+
+    public void setDescription(ContextMenuEvent contextMenuEvent) {
+        selectedDescription = (String) fxDescription.getText();
     }
 }

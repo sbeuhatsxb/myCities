@@ -46,12 +46,12 @@
                   <Label text="Type de toiture" GridPane.rowIndex="7" />
                   <Label text="Charpente" GridPane.rowIndex="8" />
                   <Label text="Ville" GridPane.rowIndex="9" />
-                   <TextField fx:id="fxYear" onContextMenuRequested="#setYear" GridPane.columnIndex="1" />
-                   <TextField fx:id="fxName" onContextMenuRequested="#setName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                   <TextField fx:id="fxImage" onContextMenuRequested="#setImage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                   <TextField fx:id="fxYear" onAction="#setYear" GridPane.columnIndex="1" />
+                   <TextField fx:id="fxName" onAction="#setName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                   <TextField fx:id="fxImage" onAction="#setImage" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="fxArchitect" onContextMenuRequested="#setArchitect" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ChoiceBox fx:id="fxStyle" onContextMenuRequested="#setStyle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ChoiceBox fx:id="fxType" onDragDetected="#setType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ChoiceBox fx:id="fxType" onContextMenuRequested="#setType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ChoiceBox fx:id="fxMaterial" onContextMenuRequested="#setMaterial" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ChoiceBox fx:id="fxRoofType" onContextMenuRequested="#setRoofType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <ChoiceBox fx:id="fxFrame" onContextMenuRequested="#setFrame" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
@@ -68,7 +68,7 @@
          <top>
          </top>
          <bottom>
-            <TextArea fx:id="fxDescription" editable="true" maxWidth="1024.0" minWidth="1024.0" prefHeight="200.0" prefWidth="1024.0" wrapText="true" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="fxDescription" editable="true" maxWidth="1024.0" minWidth="1024.0" onContextMenuRequested="#setDescription" prefHeight="200.0" prefWidth="1024.0" wrapText="true" BorderPane.alignment="CENTER" />
          </bottom>
          <right>
             <Label text="Description longue ci dessous" BorderPane.alignment="BOTTOM_CENTER">
