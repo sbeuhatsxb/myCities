@@ -39,6 +39,7 @@ public class CityList {
     public void showSelectedCity(ActionEvent actionEvent) {
         String selected = (String) displayCitesListChoiceBox.getValue();
         if (selected == null) {
+            text.setStyle("-fx-text-fill: red;");
             text.setText("Veuillez choisir une ville");
         } else {
             selectedCity = selected;

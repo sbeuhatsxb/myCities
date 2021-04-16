@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -23,7 +24,7 @@ public class LoginOverviewController {
     private PasswordField userPass;
 
     @FXML
-    private TextField info;
+    private Label info;
 
     @FXML
     void memorize(ActionEvent event) {
@@ -45,11 +46,12 @@ public class LoginOverviewController {
             	}
 
             } else {
-                info.setText("le mot de passe incorrect");
+                info.setStyle("-fx-text-fill: red;");
+                info.setText("Le mot de passe est incorrect");
             }
         } else {
-
-            info.setText("ce utilisateur n'as pas été trouvé");
+            info.setStyle("-fx-text-fill: red;");
+            info.setText("Cet utilisateur n'as pas été trouvé");
         }
     }
 	/**

@@ -231,4 +231,14 @@ public class ObjectProvider {
         }
         return null;
     }
+
+    public boolean checkFavList(Building building, User user){
+        database = new DataHandler();
+        if(database.checkIfFavlistIsAlreadySet(building.getId(), user.getId())){
+            return true;
+        } else {
+            //FavList already recorded
+            return false;
+        }
+    }
 }

@@ -426,6 +426,19 @@ public class DataHandler implements Env {
         }
     }
 
+    public static void removeFromFavlist(Building building, User user){
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement()) {
+            int buildingId = ((building.getId() == 0) ? 0 : building.getId());
+            int userId = ((user.getId() == 0) ? 0 : user.getId());
+            String query = "DELETE FROM favlist WHERE id_building = "+buildingId+" AND id_user = "+userId+";";
+            stmt.execute(query);
+            System.out.println("Favlist created for user "+ user.getLogin());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static void createTables() {
 
         String createTable_role = "CREATE TABLE role(\n" +

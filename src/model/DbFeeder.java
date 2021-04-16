@@ -21,14 +21,21 @@ public class DbFeeder {
         database = new DataHandler();
         if(!database.checkIfFavlistIsAlreadySet(building.getId(), user.getId())){
             database.insertNewFavlist(building, user);
-            System.out.println("test");
             return true;
         } else {
-            System.out.println("FavList already recorded");
             return false;
         }
     }
 
+    public boolean removeFromFavlist(Building building, User user){
+        database = new DataHandler();
+        if(database.checkIfFavlistIsAlreadySet(building.getId(), user.getId())){
+            database.removeFromFavlist(building, user);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 

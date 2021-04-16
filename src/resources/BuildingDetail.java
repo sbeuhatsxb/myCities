@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.DbFeeder;
+import model.ObjectProvider;
 
 import java.io.IOException;
 
@@ -54,7 +55,7 @@ public class BuildingDetail {
     User user;
     Building building;
     DbFeeder dbFeeder = new DbFeeder();
-
+    ObjectProvider objectProvider = new ObjectProvider();
 
     public void initData(Building currentBuilding, User currentUser){
 
@@ -102,6 +103,14 @@ public class BuildingDetail {
         if(building.getDescription() != null){
             fxDescription.setText(building.getDescription());
         }
+
+        if(objectProvider.checkFavList(building, user)){
+            fxAddFav.setText("Retirer des favoris ?");
+            fxAddFav.setStyle("-fx-text-fill: red;");
+        } else {
+            fxAddFav.setText("Ajouter aux favoris");
+            fxAddFav.setStyle("-fx-text-fill: green;");
+        }
     }
 
 
@@ -129,11 +138,18 @@ public class BuildingDetail {
     }
 
     public void onClickedAddToFav(javafx.event.ActionEvent actionEvent) {
-        if(dbFeeder.addToFavlist(building, user) == true){
-            idAddFavText.setText("Bâtiment ajouté aux favoris");
+        if(objectProvider.checkFavList(building, user)){
+            dbFeeder.removeFromFavlist(building, user);
+            fxAddFav.setText("Ajouter aux favoris");
+            fxAddFav.setStyle("-fx-text-fill: green;");
         } else {
-            idAddFavText.setText("Ce bâtiment existe déjà dans vos favoris");
-        };
+            if(dbFeeder.addToFavlist(building, user) == true){
+                idAddFavText.setText("Bâtiment ajouté aux favoris");
+                idAddFavText.setStyle("-fx-font-style: italic");
+                fxAddFav.setText("Retirer des favoris ?");
+                fxAddFav.setStyle("-fx-text-fill: red;");
+            }
+        }
     }
 
     public void onClickReturnHome(ActionEvent actionEvent) {
@@ -156,4 +172,6 @@ public class BuildingDetail {
             e.printStackTrace();
         }
     }
+
+
 }

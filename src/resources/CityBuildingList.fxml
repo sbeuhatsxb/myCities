@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -62,6 +64,14 @@
                   <Insets left="20.0" />
                </VBox.margin>
             </ChoiceBox>
+            <ImageView fitHeight="234.0" fitWidth="359.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/building.jpg" />
+               </image>
+               <VBox.margin>
+                  <Insets left="350.0" />
+               </VBox.margin>
+            </ImageView>
             </children></VBox>
     </children>
 </AnchorPane>
