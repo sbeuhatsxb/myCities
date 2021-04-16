@@ -24,21 +24,23 @@ public class PleaseProvideControllerClassName {
 }
 
 	public void ToModify(ActionEvent event ) {
-		try {
+        try {
             FXMLLoader loader = new FXMLLoader();
-
-             loader.setLocation(getClass().getResource("/resources/CityOverview.fxml"));
-
-
+            loader.setLocation(getClass().getResource("/resources/AdminCityList.fxml"));
             Parent viewParent = loader.load();
 
-            Scene modifyScene = new Scene(viewParent);
+            Scene buildingDetail = new Scene(viewParent);
 
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //Access controller
+            AdminCityList controller = loader.getController();
+            controller.initData();
 
-            window.setScene(modifyScene);
+            Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(buildingDetail);
 
             window.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

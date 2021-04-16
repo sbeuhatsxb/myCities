@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.AdminCityList">
+    <children>
+
+        <VBox prefHeight="200.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TextField fx:id="text" editable="false" mouseTransparent="true" />
+              <Button fx:id="fxReturnHome" mnemonicParsing="false" onAction="#onClickReturnHome" text="Retour à la connexion">
+               <VBox.margin>
+                  <Insets left="60.0" top="80.0" />
+               </VBox.margin>
+            </Button>
+                <Label text="ADMIN : Choisissez un bâtiment à modifier" textFill="#b92020">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+               <VBox.margin>
+                  <Insets left="350.0" top="150.0" />
+               </VBox.margin>
+                </Label>
+                <ChoiceBox fx:id="displayBuildingListChoiceBox" onMouseClicked="#onClickBuildingList" prefHeight="26.0" prefWidth="240.0">
+                    <VBox.margin>
+                        <Insets left="400.0" top="30.0" />
+                    </VBox.margin>
+                </ChoiceBox>
+                <ButtonBar prefHeight="40.0" prefWidth="90.0">
+                    <buttons>
+                        <Button fx:id="showSelectedCityBtn" mnemonicParsing="false" onAction="#showSelectedCity" text="OK" textAlignment="CENTER" />
+                    </buttons>
+                    <padding>
+                        <Insets right="460.0" />
+                    </padding>
+                </ButtonBar>
+            </children></VBox>
+    </children>
+</AnchorPane>

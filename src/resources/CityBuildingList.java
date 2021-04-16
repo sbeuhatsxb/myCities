@@ -170,8 +170,8 @@ public class CityBuildingList {
             Parent viewParent = loader.load();
 
             Scene cityBuildingList = new Scene(viewParent);
-            CityList controleur =  loader.getController();
-            controleur.initData(user);
+            CityList controller =  loader.getController();
+            controller.initData(user);
             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
             window.setScene(cityBuildingList);
