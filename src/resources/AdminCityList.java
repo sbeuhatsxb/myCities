@@ -39,7 +39,7 @@ public class AdminCityList {
         String selected = (String) displayBuildingListChoiceBox.getValue();
         if (selected == null) {
             text.setStyle("-fx-text-fill: red;");
-            text.setText("Veuillez choisir une ville");
+            text.setText("Veuillez choisir un bâtiment");
         } else {
             selectedBuilding = selected;
             changeSceneToAdminDetailView(actionEvent);
