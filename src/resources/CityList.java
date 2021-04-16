@@ -31,9 +31,11 @@ public class CityList {
     User currentUser;
 
 
+
     public void initData(User user) {
         currentUser = user;
         loadData();
+       
     }
 
     public void showSelectedCity(ActionEvent actionEvent) {
@@ -71,7 +73,7 @@ public class CityList {
         }
 
     }
-
+    
     private void loadData() {
         list.removeAll(list);
 

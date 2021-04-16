@@ -9,13 +9,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.ObjectProvider;
+import sample.Main;
 
 import java.io.IOException;
 
 public class LoginOverviewController {
+
+
+	// Reference to the main application.
+    private Main main;
+     private  User currentUser;
+
+
+
+
+
+
 
     @FXML
     private TextField userLogin;
@@ -103,12 +119,13 @@ public class LoginOverviewController {
 //            e.printStackTrace();
 //        }
 
+
     }
     private void startAdminSession(ActionEvent event) {
     	try {
             FXMLLoader loader = new FXMLLoader();
 
-             loader.setLocation(getClass().getResource("/resources/CityList.fxml"));
+             loader.setLocation(getClass().getResource("/resources/AdminPanel.fxml"));
 
 
             Parent viewParent = loader.load();
