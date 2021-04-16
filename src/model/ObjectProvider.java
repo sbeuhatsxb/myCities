@@ -220,11 +220,13 @@ public class ObjectProvider {
             return type;
         }
         return null;
+        
+        
     }
 
     public Frame getFrameByLabel(String label){
         database = new DataHandler();
-        List<Object> types = database.getFilteredStringByColumn(Env.MATERIAL, label, "label");
+        List<Object> types = database.getFilteredStringByColumn(Env.FRAME, label, "label");
         if(types.size() > 0) {
             Frame type = (Frame) types.get(0);
             return type;
