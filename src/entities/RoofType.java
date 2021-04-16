@@ -28,4 +28,6 @@ public class RoofType {
     public void setLabel(String label) {
         this.label = label;
     }
+
+	
 }

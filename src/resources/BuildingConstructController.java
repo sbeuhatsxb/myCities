@@ -2,21 +2,34 @@ package resources;
 
 
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
+import entities.Architect;
 import entities.Building;
 import entities.City;
+import entities.Frame;
+import entities.Material;
+import entities.RoofType;
+import entities.Style;
+import entities.Type;
 import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import model.DbFeeder;
 import model.ObjectProvider;
 
@@ -71,25 +84,38 @@ public class BuildingConstructController {
 
 	    @FXML
 	    private Button fxInsert;
+	    
+	    @FXML
+	    private Label fxStatus;
+	    
+	    @FXML
+	    private Button fxRetour;
+	    
+	    @FXML
+	    private Button fxNewAjout;
 
     @FXML
     void insertion(ActionEvent event) {
-    	fxInsert.setVisible(false);
+    	
+    	
+    	
     	
     	building.setName(fxName.getText());
     	building.setDescription(fxDesc.getText());
     	building.setYear(Integer.parseInt(fxYear.getText()));
     	building.setWindows(Integer.parseInt(fxWindows.getText()));
-    	building.setCity(objectProvider.getCityByName(fxCity.getValue()));
-    	building.setArchitect(null);
-    	building.setMaterial(null);
-    	building.setType(null);
-    	building.setRoofType(null);
-    	building.setFrame(null);
-    	building.setStyle(null);
+    	building.setCity(objectProvider.getCityByName(fxCity.getValue().toString()));
+    	building.setArchitect(objectProvider.getArchitectByLabel( fxArchitect.getValue().toString()));
+    	building.setMaterial(objectProvider.getMaterialByLabel((String) fxMaterial.getValue()));
+    	building.setType(objectProvider.getTypeByLabel((String) fxType.getValue()));
+    	building.setRoofType(objectProvider.getRoofTypeByLabel((String) fxToit.getValue()));
+    	building.setFrame(objectProvider.getFrameByLabel((String) fxFrame.getValue()));
+    	building.setStyle(objectProvider.getStyleByLabel((String) fxStyle.getValue()));
     	DbFeeder dbfeeder = new DbFeeder(); 
     	dbfeeder.addNewBuilding(building);
-
+    	fxStatus.setText("Batiment "+fxName.getText()+" est créé");
+    	fxInsert.setVisible(false);
+    	fxNewAjout.setVisible(true);
     }
     
     @FXML
@@ -99,16 +125,17 @@ public class BuildingConstructController {
     }
     
     private void loadData() {
+
     	 cityList.removeAll(cityList);
     	 
     	 
 
-         List<Object> citiesGetter = objectProvider.getAllBuildings();
+         List<Object> citiesGetter = objectProvider.getAllCities();
          HashSet<String> cities = new HashSet<>();
          String cityName;
          for (int i = 0; i < citiesGetter.size(); i++) {
-             Building city = (Building) citiesGetter.get(i);
-             cityName = city.getCity().getLabel();
+             City city = (City) citiesGetter.get(i);
+             cityName = city.getLabel();
              cities.add(cityName);
          }
 
@@ -119,12 +146,12 @@ public class BuildingConstructController {
          	
          architectList.removeAll(architectList);
     	
-         List<Object> architectGetter = objectProvider.getAllBuildings();
+         List<Object> architectGetter = objectProvider.getAllArchitects();
          HashSet<String> architects = new HashSet<>();
          String architectName;
          for (int i = 0; i < architectGetter.size(); i++) {
-             Building architect = (Building) architectGetter.get(i);
-             architectName = architect.getArchitect().getLabel();
+             Architect architect = (Architect) architectGetter.get(i);
+             architectName = architect.getLabel();
              architects.add(architectName);
          }
 
@@ -133,12 +160,12 @@ public class BuildingConstructController {
          
          typeList.removeAll(typeList);
      	
-         List<Object> typeGetter = objectProvider.getAllBuildings();
+         List<Object> typeGetter = objectProvider.getAllTypes();
          HashSet<String> types = new HashSet<>();
          String typeName;
          for (int i = 0; i < typeGetter.size(); i++) {
-             Building type = (Building) typeGetter.get(i);
-             typeName = type.getType().getLabel();
+             Type type = (Type) typeGetter.get(i);
+             typeName = type.getLabel();
              types.add(typeName);
          }
 
@@ -147,42 +174,42 @@ public class BuildingConstructController {
          
          materialList.removeAll(materialList);
       	
-         List<Object> materialGetter = objectProvider.getAllBuildings();
+         List<Object> materialGetter = objectProvider.getAllMaterial();
          HashSet<String> materials = new HashSet<>();
          String materialName;
          for (int i = 0; i < materialGetter.size(); i++) {
-             Building material = (Building) materialGetter.get(i);
-             materialName = material.getMaterial().getLabel();
+             Material material = (Material) materialGetter.get(i);
+             materialName = material.getLabel();
              materials.add(materialName);
          }
 
          materialList.addAll(materials);
          fxMaterial.getItems().addAll(materialList);
-      /*   
+       
          toitList.removeAll(toitList);
         	
-         List<Object>toitGetter = objectProvider.getAllBuildings();
+         List<Object>toitGetter = objectProvider.getAllRoofTypes();
          HashSet<String> toits = new HashSet<>();
          String toitName;
          for (int i = 0; i < toitGetter.size(); i++) {
-             Building toit = (Building) toitGetter.get(i);
-             toitName = toit.getRoofType().getLabel();
+             RoofType toit = (RoofType) toitGetter.get(i);
+             toitName = toit.getLabel();
              toits.add(toitName);
          }
 
          toitList.addAll(toits);
          fxToit.getItems().addAll(toitList);
          
-     */
+     
          
          charpenteList.removeAll(charpenteList);
         	
-         List<Object> frameGetter = objectProvider.getAllBuildings();
+         List<Object> frameGetter = objectProvider.getAllFrames();
          HashSet<String> charpentes = new HashSet<>();
          String charpenteName;
          for (int i = 0; i < frameGetter.size(); i++) {
-             Building charpente = (Building) frameGetter.get(i);
-             charpenteName = charpente.getFrame().getLabel();
+             Frame charpente = (Frame) frameGetter.get(i);
+             charpenteName = charpente.getLabel();
              charpentes.add(charpenteName);
          }
 
@@ -195,23 +222,61 @@ public class BuildingConstructController {
          
         styleList.removeAll(styleList);
         	
-         List<Object> styleGetter = objectProvider.getAllBuildings();
+         List<Object> styleGetter = objectProvider.getAllStyles();
          HashSet<String> styles = new HashSet<>();
          String styleName;
          for (int i = 0; i < styleGetter.size(); i++) {
-             Building style = (Building) styleGetter.get(i);
-             styleName = style.getStyle().getLabel();
+             Style style = (Style) styleGetter.get(i);
+             styleName = style.getLabel();
              styles.add(styleName);
          }
 
          styleList.addAll(styles);
          fxStyle.getItems().addAll(styleList);
     }
-	    
-    
-    
-	  
-	    
-	   
 
+    @FXML
+    private void retourControlPan(ActionEvent event) {
+    	try {
+            FXMLLoader loader = new FXMLLoader();
+            
+             loader.setLocation(getClass().getResource("/resources/AdminPanel.fxml"));
+            
+           
+            Parent viewParent = loader.load();
+
+            Scene cityBuildingList = new Scene(viewParent);
+  
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(cityBuildingList);
+
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
+    @FXML
+    private void ajouterNewBat(ActionEvent event) {
+    	try {
+            FXMLLoader loader = new FXMLLoader();
+            
+             loader.setLocation(getClass().getResource("/resources/BuildingConstruct.fxml"));
+            
+           
+            Parent viewParent = loader.load();
+
+            Scene cityBuildingList = new Scene(viewParent);
+  
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            window.setScene(cityBuildingList);
+
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+	}
 }

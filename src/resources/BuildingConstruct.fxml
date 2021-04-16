@@ -54,8 +54,10 @@
          </children>
       </GridPane>
       <ImageView fx:id="fxImg" fitHeight="150.0" fitWidth="200.0" layoutX="389.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="fxInsert" layoutX="477.0" layoutY="324.0" mnemonicParsing="false" onAction="#insertion" text="Ajouter" />
-      <Label layoutX="420.0" layoutY="14.0" prefHeight="71.0" prefWidth="169.0" text="Creeer un nouveau Batiment" />
+      <Button fx:id="fxInsert" layoutX="489.0" layoutY="324.0" mnemonicParsing="false" onAction="#insertion" text="Ajouter" />
+      <Label fx:id="fxStatus" layoutX="420.0" layoutY="14.0" prefHeight="71.0" prefWidth="169.0" text="Creeer un nouveau Batiment" />
       <TextArea fx:id="fxDesc" layoutX="55.0" layoutY="261.0" prefHeight="118.0" prefWidth="376.0" />
+      <Button fx:id="fxRetour" layoutX="547.0" layoutY="324.0" mnemonicParsing="false" onAction="#retourControlPan" text="Retour" />
+      <Button fx:id="fxNewAjout" layoutX="505.0" layoutY="287.0" mnemonicParsing="false" onAction="#ajouterNewBat" text="Ajouter un autre" visible="false" />
    </children>
 </AnchorPane>
