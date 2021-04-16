@@ -28,7 +28,7 @@ public class BuildingConstructController {
 	ObservableList typeList = FXCollections.observableArrayList();
 	ObservableList materialList = FXCollections.observableArrayList();
 	ObservableList toitList = FXCollections.observableArrayList();
-	ObservableList frameList = FXCollections.observableArrayList();
+	ObservableList charpenteList = FXCollections.observableArrayList();
 	ObservableList styleList = FXCollections.observableArrayList();
 	
     ObjectProvider objectProvider = new ObjectProvider();
@@ -76,11 +76,11 @@ public class BuildingConstructController {
     void insertion(ActionEvent event) {
     	fxInsert.setVisible(false);
     	
-    	/*building.setName(fxName.getText());
+    	building.setName(fxName.getText());
     	building.setDescription(fxDesc.getText());
     	building.setYear(Integer.parseInt(fxYear.getText()));
     	building.setWindows(Integer.parseInt(fxWindows.getText()));
-    	building.setCity(op.getCityByName(fxName.getText()));
+    	building.setCity(objectProvider.getCityByName(fxCity.getValue()));
     	building.setArchitect(null);
     	building.setMaterial(null);
     	building.setType(null);
@@ -88,7 +88,7 @@ public class BuildingConstructController {
     	building.setFrame(null);
     	building.setStyle(null);
     	DbFeeder dbfeeder = new DbFeeder(); 
-    	dbfeeder.addNewBuilding(building);*/
+    	dbfeeder.addNewBuilding(building);
 
     }
     
@@ -136,14 +136,76 @@ public class BuildingConstructController {
          List<Object> typeGetter = objectProvider.getAllBuildings();
          HashSet<String> types = new HashSet<>();
          String typeName;
-         for (int i = 0; i < architectGetter.size(); i++) {
-             Building architect = (Building) architectGetter.get(i);
-             architectName = architect.getArchitect().getLabel();
-             architects.add(architectName);
+         for (int i = 0; i < typeGetter.size(); i++) {
+             Building type = (Building) typeGetter.get(i);
+             typeName = type.getType().getLabel();
+             types.add(typeName);
          }
 
-         architectList.addAll(architects);
-         fxArchitect.getItems().addAll(architectList);
+         typeList.addAll(types);
+         fxType.getItems().addAll(typeList);
+         
+         materialList.removeAll(materialList);
+      	
+         List<Object> materialGetter = objectProvider.getAllBuildings();
+         HashSet<String> materials = new HashSet<>();
+         String materialName;
+         for (int i = 0; i < materialGetter.size(); i++) {
+             Building material = (Building) materialGetter.get(i);
+             materialName = material.getMaterial().getLabel();
+             materials.add(materialName);
+         }
+
+         materialList.addAll(materials);
+         fxMaterial.getItems().addAll(materialList);
+      /*   
+         toitList.removeAll(toitList);
+        	
+         List<Object>toitGetter = objectProvider.getAllBuildings();
+         HashSet<String> toits = new HashSet<>();
+         String toitName;
+         for (int i = 0; i < toitGetter.size(); i++) {
+             Building toit = (Building) toitGetter.get(i);
+             toitName = toit.getRoofType().getLabel();
+             toits.add(toitName);
+         }
+
+         toitList.addAll(toits);
+         fxToit.getItems().addAll(toitList);
+         
+     */
+         
+         charpenteList.removeAll(charpenteList);
+        	
+         List<Object> frameGetter = objectProvider.getAllBuildings();
+         HashSet<String> charpentes = new HashSet<>();
+         String charpenteName;
+         for (int i = 0; i < frameGetter.size(); i++) {
+             Building charpente = (Building) frameGetter.get(i);
+             charpenteName = charpente.getFrame().getLabel();
+             charpentes.add(charpenteName);
+         }
+
+         charpenteList.addAll(charpentes);
+         fxFrame.getItems().addAll(charpenteList);
+         
+         
+         
+     //
+         
+        styleList.removeAll(styleList);
+        	
+         List<Object> styleGetter = objectProvider.getAllBuildings();
+         HashSet<String> styles = new HashSet<>();
+         String styleName;
+         for (int i = 0; i < styleGetter.size(); i++) {
+             Building style = (Building) styleGetter.get(i);
+             styleName = style.getStyle().getLabel();
+             styles.add(styleName);
+         }
+
+         styleList.addAll(styles);
+         fxStyle.getItems().addAll(styleList);
     }
 	    
     
